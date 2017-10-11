@@ -1,0 +1,23 @@
+{
+    "perl": "6",
+    "name": "App::Bob",
+    "version": "0.0.1",
+    "auth": "github:scriptkitties",
+    "description": "Bob helps you build and package your modules",
+    "license": "GPL-3.0",
+    "depends": [
+    ],
+    "provides": {
+        "bob": "bin/bob",
+        "App::Bob": "lib/App/Bob.pm6"
+    },
+    "authors": [
+        "Patrick Spek <p.spek@tyil.work>"
+    ],
+    "tags": [
+    ],
+    "test-depends": [
+        "Test::META"
+    ],
+    "source-url": "https://github.com/scriptkitties/perl6-App-Bob.git"
+}

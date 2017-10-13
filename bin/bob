@@ -3,9 +3,10 @@
 use v6.c;
 
 use App::Bob;
+use App::Bob::Package::Ebuild;
 use JSON::Fast;
 
-sub MAIN("dist", *@paths, Bool :$force = False)
+multi sub MAIN("dist", *@paths, Bool :$force = False)
 {
 	for @paths -> $path {
 		chdir $path;
@@ -31,4 +32,15 @@ sub MAIN("dist", *@paths, Bool :$force = False)
 
 		say "Created {$output}";
 	}
+}
+
+multi sub MAIN("pkg", "ebuild", $path where /META6.json$/, Bool :$force = False)
+{
+	my %meta = from-json(slurp($path));
+	my Str $output = make-ebuild(%meta);
+	my Str $atom-name = atom-name(%meta<name>, %meta<version>);
+
+	spurt("{$atom-name}.ebuild", $output);
+
+	say "Saved $atom-name";
 }

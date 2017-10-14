@@ -60,9 +60,10 @@ multi sub MAIN("release", $path, Bool :$ask = False)
 		"Bugfix",
 	);
 	my Int $default-release = 3;
+	my Str $absolute-path = $path.IO.absolute;
 
 	# Change to the directory to release
-	chdir $path;
+	chdir $absolute-path;
 
 	# Make sure the directory is clean
 	my $git-cmd = run « git status --short », :out;
@@ -138,5 +139,5 @@ multi sub MAIN("release", $path, Bool :$ask = False)
 	exit if $ask && !confirm("Create new dist?");
 
 	# Build the dist
-	MAIN("dist", $path);
+	MAIN("dist", $absolute-path);
 }

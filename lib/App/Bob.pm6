@@ -78,17 +78,20 @@ sub confirm(Str $prompt = "Continue?", Bool $default = True --> Bool) is export
 	}
 }
 
-sub ask(Str $prompt, Str :$default = "" --> Bool) is export
+sub ask(Str $message, Str :$default = "" --> Str) is export
 {
+	my Str $prompt = $message;
+
+	if ($default ne "") {
+		$prompt ~= " [$default]";
+	}
+
+	$prompt ~= ": ";
+
 	loop {
-		my $input = prompt "Name for the module: ";
+		my $input = prompt $prompt;
 
-		if ($input ne "") {
-			return $input;
-		}
-
-		if ($default ne "") {
-			return $default;
-		}
+		return $input if $input ne "";
+		return $default if $default ne "";
 	}
 }

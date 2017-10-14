@@ -1,26 +1,27 @@
 {
-    "perl": "6",
-    "name": "App::Bob",
-    "version": "0.0.1",
-    "auth": "github:scriptkitties",
-    "description": "Bob helps you build and package your modules",
-    "license": "GPL-3.0",
-    "depends": [
-        "JSON::Fast",
-        "Template::Mustache"
-    ],
-    "provides": {
-        "bob": "bin/bob",
-        "App::Bob": "lib/App/Bob.pm6",
-        "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6"
-    },
-    "authors": [
-        "Patrick Spek <p.spek@tyil.work>"
-    ],
-    "tags": [
-    ],
-    "test-depends": [
-        "Test::META"
-    ],
-    "source-url": "https://github.com/scriptkitties/perl6-App-Bob.git"
+  "name": "App::Bob",
+  "perl": "6",
+  "source-url": "https://github.com/scriptkitties/perl6-App-Bob.git",
+  "auth": "github:scriptkitties",
+  "depends": [
+    "JSON::Fast",
+    "Template::Mustache"
+  ],
+  "license": "GPL-3.0",
+  "provides": {
+    "bob": "bin/bob",
+    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6",
+    "App::Bob": "lib/App/Bob.pm6"
+  },
+  "tags": [
+    
+  ],
+  "test-depends": [
+    "Test::META"
+  ],
+  "version": "0.1.0",
+  "description": "Bob helps you build and package your modules",
+  "authors": [
+    "Patrick Spek <p.spek@tyil.work>"
+  ]
 }

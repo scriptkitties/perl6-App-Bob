@@ -116,6 +116,8 @@ EOF
 		run << git add . >>;
 		run << git commit -m "Initial commit" >>;
 	}
+
+	say "Created new project folder at {$dir-name.IO.absolute}";
 }
 
 multi sub MAIN("pkg", "ebuild", $path where /META6.json$/, Bool :$force = False)

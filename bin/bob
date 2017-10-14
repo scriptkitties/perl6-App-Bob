@@ -8,7 +8,13 @@ use JSON::Fast;
 
 multi sub MAIN("dist", *@paths, Bool :$force = False)
 {
+	my Str @absolute-paths;
+
 	for @paths -> $path {
+		@absolute-paths.push: $path.IO.absolute;
+	}
+
+	for @absolute-paths -> $path {
 		chdir $path;
 
 		if (!"./META6.json".IO.e) {

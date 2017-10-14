@@ -135,6 +135,8 @@ multi sub MAIN("release", $path, Bool :$ask = False)
 	run « git add META6.json »;
 	run « git commit -m "Bump version to {%meta<version>}" »;
 
+	exit if $ask && !confirm("Create new dist?");
+
 	# Build the dist
 	MAIN("dist", $path);
 }

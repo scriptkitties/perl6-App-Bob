@@ -66,10 +66,12 @@ multi sub MAIN("release", $path, Bool :$ask = False)
 	chdir $absolute-path;
 
 	# Make sure the directory is clean
-	my $git-cmd = run « git status --short », :out;
+	if ($absolute-path.IO.add(".git").e) {
+		my $git-cmd = run « git status --short », :out;
 
-	if (0 < $git-cmd.out.lines.elems) {
-		die "Refusing to work on an unclean directory.";
+		if (0 < $git-cmd.out.lines.elems) {
+			die "Refusing to work on an unclean directory.";
+		}
 	}
 
 	# Get the META6 info
@@ -133,9 +135,11 @@ multi sub MAIN("release", $path, Bool :$ask = False)
 	put-meta(:%meta);
 
 	# Commit the updated META6
-	run « git add META6.json »;
-	run « git commit -m "Bump version to {%meta<version>}" »;
-	run « git tag "v{%meta<version>}" »;
+	if ($absolute-path.IO.add(".git").e) {
+		run « git add META6.json »;
+		run « git commit -m "Bump version to {%meta<version>}" »;
+		run « git tag "v{%meta<version>}" »;
+	}
 
 	exit if $ask && !confirm("Create new dist?");
 

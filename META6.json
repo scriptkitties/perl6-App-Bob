@@ -20,7 +20,7 @@
     "Test::META"
   ],
   "version": "0.2.2",
-  "description": "Bob helps you build and package your modules",
+  "description": "Bob the CPAN distribution builder",
   "authors": [
     "Patrick Spek <p.spek@tyil.work>"
   ]

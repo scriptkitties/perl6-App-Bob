@@ -1,0 +1,44 @@
+= App::Bob
+:toc: preamble
+
+`App::Bob` is a tool to assist in creating and sharing
+https://www.cpan.org/[CPAN] modules.
+
+== Features
+To do it's job, `bob` has a couple of tools ready for you. Use any of the
+following subcommands to use them.
+
+=== dist
+`dist` creates a `.tar.gz` file you can upload to
+https://pause.perl.org/[PAUSE].
+
+=== new
+Create a new module in the current directory. Bob will ask you some questions,
+and continue to perform the following steps:
+
+- Create module directory skeleton
+- Write `META6.json`
+- Write `.editorconfig`
+- If the `git` flag is enabled (which it is by default):
+  - Initialize a git repository
+  - Make an initial commit
+
+=== pkg
+The `pkg` command allows you to easily create packages for distributions. For
+each type of package, there's a different subcommand.
+
+==== ebuild
+To create `ebuild` files, used by Gentoo and derivatives, you can make use of
+the `ebuild` subcommand to `package`.
+
+=== release
+Create a new release for a module. This will bump the version number in
+`META6.json`, commit it into git and create a tag with the version number.
+
+== Roadmap
+- Add `upload` command to upload a given `.tar.gz` distribution to PAUSE
+- Add `push` command to release a new version of a module, and upload it to PAUSE
+- Make `new` also write a `.travis.yml`
+
+== License
+`App::Bob` is released under the GNU GPL, version 3 or later.

@@ -112,9 +112,9 @@ EOF
 	spurt(".gitignore", $gitignore);
 
 	if ($git) {
-		run << git init >>;
-		run << git add . >>;
-		run << git commit -m "Initial commit" >>;
+		run « git init »;
+		run « git add . »;
+		run « git commit -m "Initial commit" »;
 	}
 
 	say "Created new project folder at {$dir-name.IO.absolute}";

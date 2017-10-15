@@ -63,6 +63,9 @@ a `--type` argument to `bob`. Valid types are
 - Add `upload` command to upload a given `.tar.gz` distribution to PAUSE
 - Add `push` command to release a new version of a module, and upload it to PAUSE
 - Make `new` also write a `.travis.yml`
+- Add tests
+- Clean up the codebase
+- Release v1.0.0
 
 == License
 `App::Bob` is released under the GNU GPL, version 3 or later.

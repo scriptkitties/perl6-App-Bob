@@ -10,8 +10,8 @@
   "license": "GPL-3.0",
   "provides": {
     "bob": "bin/bob",
-    "App::Bob": "lib/App/Bob.pm6",
-    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6"
+    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6",
+    "App::Bob": "lib/App/Bob.pm6"
   },
   "tags": [
     
@@ -19,7 +19,7 @@
   "test-depends": [
     "Test::META"
   ],
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Bob the CPAN distribution builder",
   "authors": [
     "Patrick Spek <p.spek@tyil.work>"

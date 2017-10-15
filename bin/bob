@@ -84,15 +84,6 @@ multi sub MAIN("new", Str $module-name = "", Bool :$git = True)
 	mkdir "lib";
 	mkdir "t";
 
-	my $gitignore = q:to/EOF/
-# Perl 6 precompiled files
-.precomp
-
-# Editor files
-*~     # emacs
-.*.sw? # vim
-EOF
-;
 
 my $editorconfig = q:to/EOF/
 [*]
@@ -109,9 +100,20 @@ EOF
 
 	# Write some files
 	spurt("META6.json", to-json(%meta));
-	spurt(".gitignore", $gitignore);
 
 	if ($git) {
+		my $gitignore = q:to/EOF/
+# Perl 6 precompiled files
+.precomp
+
+# Editor files
+*~     # emacs
+.*.sw? # vim
+EOF
+		;
+
+		spurt(".gitignore", $gitignore);
+
 		run « git init »;
 		run « git add . »;
 		run « git commit -m "Initial commit" »;

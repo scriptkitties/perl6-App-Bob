@@ -8,6 +8,12 @@ https://www.cpan.org/[CPAN] modules.
 To do it's job, `bob` has a couple of tools ready for you. Use any of the
 following subcommands to use them.
 
+=== depend
+Indicate your module depends on another module. Unless disabled with
+`--skip-install`, `bob` will try to install the module as well through `zef`.
+Regardless of the `--skip-install` value, `bob` will update your `META6.json`
+with the new dependency as well.
+
 === dist
 `dist` creates a `.tar.gz` file you can upload to
 https://pause.perl.org/[PAUSE].

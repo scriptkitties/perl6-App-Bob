@@ -34,6 +34,11 @@ multi sub MAIN("dist", *@paths, Bool :$force = False)
 {
 	my Str @absolute-paths;
 
+	# Default to the current directory
+	if (@paths.elems < 1) {
+		@paths.push: ".";
+	}
+
 	for @paths -> $path {
 		@absolute-paths.push: $path.IO.absolute;
 	}
@@ -157,7 +162,7 @@ multi sub MAIN("pkg", "ebuild", $path where /META6.json$/, Bool :$force = False)
 	say "Saved $atom-name";
 }
 
-multi sub MAIN("release", $path, Bool :$ask = False)
+multi sub MAIN("release", $path = ".", Bool :$ask = False)
 {
 	# Define release types
 	my Str @release-types = (

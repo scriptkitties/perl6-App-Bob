@@ -29,12 +29,12 @@ sub get-dist-version(%meta --> Str) is export
 	return %meta<version>.trim;
 }
 
-sub make-dist-name(Str $name --> Str)
+sub make-dist-name(Str $name --> Str) is export
 {
 	$name.subst("::", "-", :g).trim;
 }
 
-sub make-dist-fqdn(Str $name, Str $version --> Str)
+sub make-dist-fqdn(Str $name, Str $version --> Str) is export
 {
 	"{make-dist-name($name)}-$version";
 }

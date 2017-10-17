@@ -8,14 +8,7 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Release;
 
-multi sub MAIN("release", Str @paths, Bool :$ask = False) is export
-{
-	for @paths -> $path {
-		MAIN("release", $path.IO.absolute, :$ask);
-	}
-}
-
-multi sub MAIN("release", $path, Bool :$ask = False) is export
+multi sub MAIN("release", Str $path, Bool :$ask = False) is export
 {
 	# Define release types
 	my Str @release-types = (
@@ -26,10 +19,10 @@ multi sub MAIN("release", $path, Bool :$ask = False) is export
 	my Int $default-release = 3;
 
 	# Change to the directory to release
-	chdir $absolute-path;
+	chdir $path;
 
 	# Make sure the directory is clean
-	if ($absolute-path.IO.add(".git").e) {
+	if ($path.IO.add(".git").e) {
 		my $git-cmd = run « git status --short », :out;
 
 		if (0 < $git-cmd.out.lines.elems) {
@@ -98,7 +91,7 @@ multi sub MAIN("release", $path, Bool :$ask = False) is export
 	put-meta(:%meta);
 
 	# Commit the updated META6
-	if ($absolute-path.IO.add(".git").e) {
+	if ($path.IO.add(".git").e) {
 		run « git add META6.json »;
 		run « git commit -m "Bump version to {%meta<version>}" »;
 		run « git tag "v{%meta<version>}" »;
@@ -107,5 +100,17 @@ multi sub MAIN("release", $path, Bool :$ask = False) is export
 	return if $ask && !confirm("Create new dist?");
 
 	# Build the dist
-	MAIN("dist", $absolute-path, :force);
+	MAIN("dist", $path, :force);
+}
+
+multi sub MAIN("release", Bool :$ask = False) is export
+{
+	MAIN("release", ".", :$ask);
+}
+
+multi sub MAIN("release", *@paths, Bool :$ask = False) is export
+{
+	for @paths -> $path {
+		MAIN("release", $path.IO.absolute, :$ask);
+	}
 }

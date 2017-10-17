@@ -17,7 +17,7 @@ sub get-dist-name(%meta --> Str) is export
 		die "No name attribute in meta";
 	}
 
-	return %meta<name>.subst("::", "-", :g).trim;
+	return make-dist-name(%meta<name>);
 }
 
 sub get-dist-version(%meta --> Str) is export
@@ -27,4 +27,14 @@ sub get-dist-version(%meta --> Str) is export
 	}
 
 	return %meta<version>.trim;
+}
+
+sub make-dist-name(Str $name --> Str) is export
+{
+	$name.subst("::", "-", :g).trim;
+}
+
+sub make-dist-fqdn(Str $name, Str $version --> Str) is export
+{
+	"{make-dist-name($name)}-$version";
 }

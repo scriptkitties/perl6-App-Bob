@@ -387,6 +387,29 @@ multi sub MAIN("upload", *@dists)
 
 		my @curl-out = $curl.out.lines(:close);
 
+		# Check if it all worked out
+		my %http-status;
+
+		for @curl-out -> $line {
+			if ($line ~~ m:i/HTTP\/\d\.\d\s(\d+)\s(.+)/) {
+				%http-status =
+					code => $0,
+					message => $1
+					;
+
+				last;
+			}
+		}
+
+		if (!%http-status) {
+			note "Could not find HTTP status in curl response";
+			next;
+		}
+
+		if (%http-status<code> ne "200") {
+			note "Upload for {%meta<name>} failed: {%http-status<message>}";
+			next;
+		}
 
 		# Report success to the user
 		say "Uploaded {%meta<name>}:v{%meta<version>} to CPAN";

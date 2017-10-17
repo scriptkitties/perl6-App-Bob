@@ -8,7 +8,14 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Release;
 
-multi sub MAIN("release", $path = ".", Bool :$ask = False) is export
+multi sub MAIN("release", Str @paths, Bool :$ask = False) is export
+{
+	for @paths -> $path {
+		MAIN("release", $path.IO.absolute, :$ask);
+	}
+}
+
+multi sub MAIN("release", $path, Bool :$ask = False) is export
 {
 	# Define release types
 	my Str @release-types = (
@@ -17,7 +24,6 @@ multi sub MAIN("release", $path = ".", Bool :$ask = False) is export
 		"Bugfix",
 	);
 	my Int $default-release = 3;
-	my Str $absolute-path = $path.IO.absolute;
 
 	# Change to the directory to release
 	chdir $absolute-path;

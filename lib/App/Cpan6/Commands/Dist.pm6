@@ -7,51 +7,45 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Dist;
 
-multi sub MAIN("dist", *@paths, Bool :$force = False) is export
+multi sub MAIN("dist", @paths, Bool :$force = False) is export
 {
-	my Str @absolute-paths;
-
-	# Default to the current directory
-	if (@paths.elems < 1) {
-		@paths.push: ".";
-	}
-
 	for @paths -> $path {
-		@absolute-paths.push: $path.IO.absolute;
+		MAIN("dist", $path, :$force);
+	}
+}
+
+multi sub MAIN("dist", Str $path, Bool :$force = False) is export
+{
+	chdir $path;
+
+	if (!"./META6.json".IO.e) {
+		note "No META6.json in {$path}";
+		next;
 	}
 
-	for @absolute-paths -> $path {
-		chdir $path;
+	my %meta = get-meta;
 
-		if (!"./META6.json".IO.e) {
-			note "No META6.json in {$path}";
-			next;
-		}
+	my Str $fqdn = get-dist-fqdn(%meta);
+	my Str $basename = $*CWD.IO.basename;
+	my Str $transform = "s/^\./{$fqdn}/";
+	my Str $output = "{$*HOME}/.local/var/cpan6/dists/{$fqdn}.tar.gz";
 
-		my %meta = get-meta;
+	# Ensure output directory exists
+	mkdir $output.IO.parent;
 
-		my Str $fqdn = get-dist-fqdn(%meta);
-		my Str $basename = $*CWD.IO.basename;
-		my Str $transform = "s/^\./{$fqdn}/";
-		my Str $output = "{$*HOME}/.local/var/cpan6/dists/{$fqdn}.tar.gz";
-
-		# Ensure output directory exists
-		mkdir $output.IO.parent;
-
-		if ($output.IO.e && !$force) {
-			note "Archive already exists: {$output}";
-			next;
-		}
-
-		my $proc = run «
-			tar czf {$output}
-			--transform {$transform}
-			--exclude-vcs
-			--exclude-vcs-ignores
-			--exclude=.[^/]*
-			.
-		», :err;
-
-		say "Created {$output}";
+	if ($output.IO.e && !$force) {
+		note "Archive already exists: {$output}";
+		next;
 	}
+
+	my $proc = run «
+		tar czf {$output}
+		--transform {$transform}
+		--exclude-vcs
+		--exclude-vcs-ignores
+		--exclude=.[^/]*
+		.
+	», :err;
+
+	say "Created {$output}";
 }

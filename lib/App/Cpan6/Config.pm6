@@ -4,13 +4,13 @@ use v6;
 
 use Config;
 
-unit module App::Bob::Config;
+unit module App::Cpan6::Config;
 
 sub get-config(--> Config) is export
 {
 	my Config $config .= new;
 	my Str @paths =
-		"{$*HOME}/.config/bob.toml"
+		"{$*HOME}/.config/cpan6.toml"
 	;
 
 	for @paths -> $path {

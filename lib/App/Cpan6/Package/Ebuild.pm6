@@ -4,7 +4,7 @@ use v6.c;
 
 use Template::Mustache;
 
-unit module App::Bob::Package::Ebuild;
+unit module App::Cpan6::Package::Ebuild;
 
 sub atom-name(Str $name, Any $version) returns Str is export
 {

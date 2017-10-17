@@ -14,6 +14,8 @@
         "git:from<bin>"
       ],
       "requires": [
+        "Config",
+        "Config::Parser::toml",
         "JSON::Fast",
         "Template::Mustache",
         "MIME::Base64",
@@ -26,8 +28,9 @@
   "license": "GPL-3.0",
   "provides": {
     "bob": "bin/bob",
+    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6",
     "App::Bob": "lib/App/Bob.pm6",
-    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6"
+    "App::Bob::Config": "lib/App/Bob/Config.pm6"
   },
   "tags": [
     

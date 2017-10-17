@@ -33,7 +33,10 @@ multi sub MAIN("dist", *@paths, Bool :$force = False) is export
 		my Str $fqdn = get-dist-fqdn(%meta);
 		my Str $basename = $*CWD.IO.basename;
 		my Str $transform = "s/^\./{$fqdn}/";
-		my Str $output = "{$*HOME}/.local/var/cpan6/{$fqdn}.tar.gz";
+		my Str $output = "{$*HOME}/.local/var/cpan6/dists/{$fqdn}.tar.gz";
+
+		# Ensure output directory exists
+		mkdir $output.IO.parent;
 
 		if ($output.IO.e && !$force) {
 			note "Archive already exists: {$output}";

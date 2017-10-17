@@ -7,7 +7,7 @@ use Config;
 
 unit module App::Cpan6::Dist;
 
-multi sub get-dist-path(:$name, :$version, Config :$config --> Str) is export
+multi sub get-dist-path(Str $name, Str $version, Config :$config --> Str) is export
 {
 	$config.get("cpan6.distdir").IO.add("{$name}-{$version}.tar.gz").absolute;
 }

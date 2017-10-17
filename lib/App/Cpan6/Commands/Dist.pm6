@@ -7,20 +7,13 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Dist;
 
-multi sub MAIN("dist", @paths, Bool :$force = False) is export
-{
-	for @paths -> $path {
-		MAIN("dist", $path, :$force);
-	}
-}
-
 multi sub MAIN("dist", Str $path, Bool :$force = False) is export
 {
 	chdir $path;
 
 	if (!"./META6.json".IO.e) {
 		note "No META6.json in {$path}";
-		next;
+		return;
 	}
 
 	my %meta = get-meta;
@@ -35,7 +28,7 @@ multi sub MAIN("dist", Str $path, Bool :$force = False) is export
 
 	if ($output.IO.e && !$force) {
 		note "Archive already exists: {$output}";
-		next;
+		return;
 	}
 
 	my $proc = run «
@@ -48,4 +41,16 @@ multi sub MAIN("dist", Str $path, Bool :$force = False) is export
 	», :err;
 
 	say "Created {$output}";
+}
+
+multi sub MAIN("dist", Bool :$force = False) is export
+{
+	MAIN("dist", ".", :$force);
+}
+
+multi sub MAIN("dist", @paths, Bool :$force = False) is export
+{
+	for @paths -> $path {
+		MAIN("dist", $path, :$force);
+	}
 }

@@ -38,7 +38,17 @@ multi sub MAIN("new", Str $name, Bool :$git = True) is export
 		tags => (),
 		version => "0.0.0",
 		provides => (),
-		depends => (),
+		depends => %(
+			runtime => %(
+				recommends => (),
+				requires => (),
+				test => %(
+					requires => (
+						"Test::META",
+					),
+				),
+			)
+		),
 	);
 
 	# Create the module skeleton

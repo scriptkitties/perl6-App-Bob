@@ -33,8 +33,6 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
 	# Get the META6 info
 	my %meta = get-meta;
 
-	say "Bumping {%meta<name>}-{%meta<version>}";
-
 	# Output the possible bump types
 	say "Bump parts";
 
@@ -84,7 +82,7 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
 
 	%meta<version> = @new-version.join(".");
 
-	say "Bumping to {%meta<version>}";
+	say "Bumping {%meta<name>} to {%meta<version>}";
 
 	exit if $ask && !confirm;
 

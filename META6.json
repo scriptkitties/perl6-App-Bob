@@ -29,7 +29,9 @@
   "provides": {
     "App::Cpan6::Package::Ebuild": "lib/App/Cpan6/Package/Ebuild.pm6",
     "cpan6": "bin/cpan6",
+    "App::Cpan6::Meta": "lib/App/Cpan6/Meta.pm6",
     "App::Cpan6": "lib/App/Cpan6.pm6",
+    "App::Cpan6::Input": "lib/App/Cpan6/Input.pm6",
     "App::Cpan6::Config": "lib/App/Cpan6/Config.pm6"
   },
   "tags": [

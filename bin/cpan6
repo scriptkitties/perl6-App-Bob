@@ -4,12 +4,12 @@ use v6.c;
 
 use App::Cpan6;
 use App::Cpan6::Config;
+use App::Cpan6::Input;
+use App::Cpan6::Meta;
 use App::Cpan6::Package::Ebuild;
 use Config;
 use File::Temp;
-use JSON::Fast;
 use MIME::Base64;
-use Terminal::Readsecret;
 
 multi sub MAIN("depend", Str $module, Bool :$skip-install = False)
 {
@@ -56,7 +56,7 @@ multi sub MAIN("dist", *@paths, Bool :$force = False)
 			next;
 		}
 
-		my %meta = from-json(slurp("./META6.json"));
+		my %meta = get-meta;
 
 		my Str $fqdn = get-dist-fqdn(%meta);
 		my Str $basename = $*CWD.IO.basename;
@@ -133,7 +133,7 @@ EOF
 ;
 
 	# Write some files
-	spurt("META6.json", to-json(%meta));
+	put-meta(:%meta);
 
 	if ($git) {
 		my $gitignore = q:to/EOF/
@@ -158,7 +158,7 @@ EOF
 
 multi sub MAIN("pkg", "ebuild", $path where /META6.json$/, Bool :$force = False)
 {
-	my %meta = from-json(slurp($path));
+	my %meta = get-meta;
 	my Str $output = make-ebuild(%meta);
 	my Str $atom-name = atom-name(%meta<name>, %meta<version>);
 
@@ -362,7 +362,7 @@ multi sub MAIN("upload", *@dists)
 		}
 	}
 
-	$config.set("pause.password", getsecret("Password: "));
+	$config.set("pause.password", password());
 
 	# Make all paths absolute before starting
 	for @dists -> $dist {

@@ -100,5 +100,5 @@ multi sub MAIN("release", $path = ".", Bool :$ask = False) is export
 	exit if $ask && !confirm("Create new dist?");
 
 	# Build the dist
-	MAIN("dist", $absolute-path);
+	callwith("dist", $absolute-path);
 }

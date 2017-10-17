@@ -46,7 +46,7 @@ multi sub MAIN("release", $path = ".", Bool :$ask = False) is export
 	my Int $release;
 
 	loop {
-		my $input = ask("Release type", default => $default-release);
+		my $input = ask("Release type", default => $default-release.Str);
 
 		if ($input ~~ /^$ | ^\d+$/) {
 			$release = $input.Int;

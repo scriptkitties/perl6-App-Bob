@@ -1,7 +1,7 @@
 {
-  "name": "App::Bob",
+  "name": "App::Cpan6",
   "perl": "6",
-  "source-url": "https://github.com/scriptkitties/perl6-App-Bob.git",
+  "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "auth": "github:scriptkitties",
   "depends": {
     "test": {
@@ -27,16 +27,16 @@
   },
   "license": "GPL-3.0",
   "provides": {
-    "bob": "bin/bob",
-    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6",
-    "App::Bob": "lib/App/Bob.pm6",
-    "App::Bob::Config": "lib/App/Bob/Config.pm6"
+    "cpan6": "bin/cpan6",
+    "App::Cpan6::Package::Ebuild": "lib/App/Cpan6/Package/Ebuild.pm6",
+    "App::Cpan6": "lib/App/Cpan6.pm6",
+    "App::Cpan6::Config": "lib/App/Cpan6/Config.pm6"
   },
   "tags": [
     
   ],
   "version": "0.5.1",
-  "description": "Bob the CPAN distribution builder",
+  "description": "The CPAN distribution helper",
   "authors": [
     "Patrick Spek <p.spek@tyil.work>"
   ]

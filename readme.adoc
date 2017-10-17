@@ -1,17 +1,17 @@
-= App::Bob
+= App::Cpan6
 :toc: preamble
 
-`App::Bob` is a tool to assist in creating and sharing
+`App::Cpan6` is a tool to assist in creating and sharing
 https://www.cpan.org/[CPAN] modules.
 
 == Features
-To do it's job, `bob` has a couple of tools ready for you. Use any of the
+To do it's job, `cpan6` has a couple of tools ready for you. Use any of the
 following subcommands to use them.
 
 === depend
 Indicate your module depends on another module. Unless disabled with
-`--skip-install`, `bob` will try to install the module as well through `zef`.
-Regardless of the `--skip-install` value, `bob` will update your `META6.json`
+`--skip-install`, `cpan6` will try to install the module as well through `zef`.
+Regardless of the `--skip-install` value, `cpan6` will update your `META6.json`
 with the new dependency as well.
 
 === dist
@@ -19,7 +19,7 @@ with the new dependency as well.
 https://pause.perl.org/[PAUSE].
 
 === new
-Create a new module in the current directory. Bob will ask you some questions,
+Create a new module in the current directory. Cpan6 will ask you some questions,
 and continue to perform the following steps:
 
 - Create module directory skeleton
@@ -52,9 +52,9 @@ shebang, version indicator and a `sub MAIN` to get you started.
 
 ==== lib
 Create a new perl 6 module file in the `lib` directory. If subdirectories need
-to be made, `bob` will take care of it. The template by default contains a
+to be made, `cpan6` will take care of it. The template by default contains a
 shebang and a version indicator. You can get an extended template by supplying
-a `--type` argument to `bob`. Valid types are
+a `--type` argument to `cpan6`. Valid types are
 
 - `class`, which will add an empty class with the correct name
 - `unit`, which will add a unit module name
@@ -68,4 +68,4 @@ a `--type` argument to `bob`. Valid types are
 - Release v1.0.0
 
 == License
-`App::Bob` is released under the GNU GPL, version 3 or later.
+`App::Cpan6` is released under the GNU GPL, version 3 or later.

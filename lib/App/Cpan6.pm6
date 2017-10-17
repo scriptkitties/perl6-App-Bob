@@ -4,7 +4,7 @@ use v6.c;
 
 use JSON::Fast;
 
-unit module App::Bob;
+unit module App::Cpan6;
 
 sub get-meta($path = ".") is export
 {

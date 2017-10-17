@@ -2,9 +2,9 @@
 
 use v6.c;
 
-use App::Bob;
-use App::Bob::Config;
-use App::Bob::Package::Ebuild;
+use App::Cpan6;
+use App::Cpan6::Config;
+use App::Cpan6::Package::Ebuild;
 use Config;
 use File::Temp;
 use JSON::Fast;
@@ -61,7 +61,7 @@ multi sub MAIN("dist", *@paths, Bool :$force = False)
 		my Str $fqdn = get-dist-fqdn(%meta);
 		my Str $basename = $*CWD.IO.basename;
 		my Str $transform = "s/^\./{$fqdn}/";
-		my Str $output = "{$*HOME}/.local/var/6pan/{$fqdn}.tar.gz";
+		my Str $output = "{$*HOME}/.local/var/cpan6/{$fqdn}.tar.gz";
 
 		if ($output.IO.e && !$force) {
 			note "Archive already exists: {$output}";
@@ -358,7 +358,7 @@ multi sub MAIN("upload", *@dists)
 		$config.set("pause.id", ask("PAUSE ID", default => $*USER.Str));
 
 		if (confirm("Save PAUSE ID to config?")) {
-			 $config.write("{$*HOME}/.config/bob.toml");
+			 $config.write("{$*HOME}/.config/cpan6.toml");
 		}
 	}
 

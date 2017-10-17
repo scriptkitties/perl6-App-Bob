@@ -13,6 +13,16 @@ sub get-config(--> Config) is export
 		"{$*HOME}/.config/cpan6.toml"
 	;
 
+	# Set default config
+	$config.read: %(
+		cpan6 => %(
+			distdir => "{$*HOME}/.local/var/cpan6/dists",
+		),
+		pause => %(
+			id => ""
+		),
+	);
+
 	for @paths -> $path {
 		if (!$path.IO.e) {
 			next;

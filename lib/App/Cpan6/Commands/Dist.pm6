@@ -42,6 +42,9 @@ multi sub MAIN("dist", *@paths, Bool :$force = False) is export
 			note "Archive already exists: {$output}";
 			next;
 		}
+		say "o $output";
+		say "t $transform";
+		say "c $*CWD";
 
 		my $proc = run «
 			tar czf {$output}

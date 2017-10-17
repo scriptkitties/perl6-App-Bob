@@ -4,7 +4,15 @@
   "source-url": "https://github.com/scriptkitties/perl6-App-Bob.git",
   "auth": "github:scriptkitties",
   "depends": {
+    "test": {
+      "requires": [
+        "Test::META"
+      ]
+    },
     "runtime": {
+      "recommends": [
+        "git:from<bin>"
+      ],
       "requires": [
         "JSON::Fast",
         "Template::Mustache",
@@ -12,25 +20,17 @@
         "File::Temp",
         "curl:from<bin>",
         "tar:from<bin>"
-      ],
-      "recommends": [
-        "git:from<bin>"
-      ]
-    },
-    "test": {
-      "requires": [
-        "Test::META"
       ]
     }
   },
   "license": "GPL-3.0",
   "provides": {
     "bob": "bin/bob",
-    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6",
-    "App::Bob": "lib/App/Bob.pm6"
+    "App::Bob": "lib/App/Bob.pm6",
+    "App::Bob::Package::Ebuild": "lib/App/Bob/Package/Ebuild.pm6"
   },
   "tags": [
-
+    
   ],
   "version": "0.5.1",
   "description": "Bob the CPAN distribution builder",

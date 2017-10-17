@@ -3,6 +3,7 @@
 use v6.c;
 
 use App::Bob::Package::Ebuild;
+use Terminal::Readsecret;
 use App::Bob;
 use File::Temp;
 use JSON::Fast;
@@ -350,8 +351,8 @@ multi sub MAIN("upload", *@dists)
 	my Str @absolute-paths;
 
 	# Get PAUSE credentials
-	my $username = ask("PAUSE ID", default => $*USER); # TODO: This should be read from a config file
-	my $password = ask("Password"); # TODO: This should be a proper password field
+	my $username = ask("PAUSE ID", default => $*USER);
+	my $password = getsecret("Password: ");
 
 	# Make all paths absolute before starting
 	for @dists -> $dist {

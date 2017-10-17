@@ -2,6 +2,7 @@
 
 use v6;
 
+use App::Cpan6::Commands::Dist;
 use App::Cpan6::Input;
 use App::Cpan6::Meta;
 
@@ -100,5 +101,5 @@ multi sub MAIN("release", $path = ".", Bool :$ask = False) is export
 	exit if $ask && !confirm("Create new dist?");
 
 	# Build the dist
-	callwith("dist", $absolute-path);
+	MAIN("dist", $absolute-path);
 }

@@ -38,6 +38,7 @@
     "App::Cpan6::Commands::Touch::Lib": "lib/App/Cpan6/Commands/Touch/Lib.pm6",
     "App::Cpan6::Commands::Touch::Bin": "lib/App/Cpan6/Commands/Touch/Bin.pm6",
     "App::Cpan6::Commands::Touch": "lib/App/Cpan6/Commands/Touch.pm6",
+    "App::Cpan6::Commands::Push": "lib/App/Cpan6/Commands/Push.pm6",
     "App::Cpan6::Input": "lib/App/Cpan6/Input.pm6",
     "App::Cpan6::Commands::Pkg::Ebuild": "lib/App/Cpan6/Commands/Pkg/Ebuild.pm6",
     "App::Cpan6::Commands::New": "lib/App/Cpan6/Commands/New.pm6",
@@ -46,7 +47,7 @@
   "tags": [
     
   ],
-  "version": "0.6.2",
+  "version": "0.6.5",
   "description": "The CPAN distribution helper",
   "authors": [
     "Patrick Spek <p.spek@tyil.work>"

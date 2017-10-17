@@ -37,6 +37,9 @@ each type of package, there's a different subcommand.
 To create `ebuild` files, used by Gentoo and derivatives, you can make use of
 the `ebuild` subcommand to `package`.
 
+==== push
+`push` is a short-hand to running `release`, `dist` and `upload`.
+
 === release
 Create a new release for a module. This will bump the version number in
 `META6.json`, commit it into git and create a tag with the version number.

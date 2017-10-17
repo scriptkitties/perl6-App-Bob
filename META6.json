@@ -30,7 +30,7 @@
     "cpan6": "bin/cpan6",
     "App::Cpan6::Package::Ebuild": "lib/App/Cpan6/Package/Ebuild.pm6",
     "App::Cpan6::Commands::Release": "lib/App/Cpan6/Commands/Release.pm6",
-    "App::Cpan6::Dist": "lib/App/Cpan6/Dist.pm6",
+    "App::Cpan6::Path": "lib/App/Cpan6/Path.pm6",
     "App::Cpan6::Commands::Upload": "lib/App/Cpan6/Commands/Upload.pm6",
     "App::Cpan6::Commands::Depend": "lib/App/Cpan6/Commands/Depend.pm6",
     "App::Cpan6": "lib/App/Cpan6.pm6",

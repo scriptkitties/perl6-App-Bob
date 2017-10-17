@@ -17,7 +17,7 @@ sub get-dist-name(%meta --> Str) is export
 		die "No name attribute in meta";
 	}
 
-	return %meta<name>.subst("::", "-", :g).trim;
+	return make-dist-name(%meta<name>);
 }
 
 sub get-dist-version(%meta --> Str) is export
@@ -29,18 +29,12 @@ sub get-dist-version(%meta --> Str) is export
 	return %meta<version>.trim;
 }
 
-sub make-path-absolute($path --> Str) is export
+sub make-dist-name(Str $name --> Str)
 {
-	$path.IO.absolute;
+	$name.subst("::", "-", :g).trim;
 }
 
-sub make-paths-absolute(@paths --> Array[Str]) is export
+sub make-dist-fqdn(Str $name, Str $version --> Str)
 {
-	my Str @absolute-paths;
-
-	for @paths -> $path {
-		@absolute-paths.push: make-path-absolute($path);
-	}
-
-	@absolute-paths;
+	"{make-dist-name($name)}-$version";
 }

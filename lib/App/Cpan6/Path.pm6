@@ -10,7 +10,7 @@ unit module App::Cpan6::Path;
 
 multi sub get-dist-path(Str $name, Str $version, Config:D :$config --> Str) is export
 {
-	$config.get("cpan6.distdir").IO.add(make-dist-fqdn($name, $version)).absolute;
+	$config.get("cpan6.distdir").IO.add(make-dist-fqdn($name, $version) ~ ".tar.gz").absolute;
 }
 
 multi sub get-dist-path(Str $name, Str $version --> Str) is export

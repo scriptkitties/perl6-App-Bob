@@ -12,7 +12,7 @@ multi sub get-dist-path(Str $name, Str $version, Config:D :$config --> Str) is e
 	$config.get("cpan6.distdir").IO.add("{$name}-{$version}.tar.gz").absolute;
 }
 
-multi sub get-dist-path(Str $name, Str $version) is export
+multi sub get-dist-path(Str $name, Str $version --> Str) is export
 {
-	get-dist-path(:$name, :$version, config => get-config);
+	get-dist-path($name, $version, config => get-config);
 }

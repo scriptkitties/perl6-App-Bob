@@ -18,6 +18,12 @@ sub get-config(--> Config) is export
 		cpan6 => %(
 			distdir => "{$*HOME}/.local/var/cpan6/dists",
 		),
+		new-module => %(
+			author => "",
+			email => "",
+			perl => "c",
+			license => "GPL-3.0",
+		),
 		pause => %(
 			id => ""
 		),

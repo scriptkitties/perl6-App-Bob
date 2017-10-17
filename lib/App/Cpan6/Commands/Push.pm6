@@ -6,8 +6,8 @@ use App::Cpan6;
 use App::Cpan6::Commands::Dist;
 use App::Cpan6::Commands::Release;
 use App::Cpan6::Commands::Upload;
-use App::Cpan6::Dist;
 use App::Cpan6::Meta;
+use App::Cpan6::Path;
 
 unit module App::Cpan6::Commands::Push;
 

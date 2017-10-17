@@ -59,8 +59,12 @@ a `--type` argument to `cpan6`. Valid types are
 - `class`, which will add an empty class with the correct name
 - `unit`, which will add a unit module name
 
+=== upload
+Upload module tarballs to PAUSE. This will ask you to enter your PAUSE ID and
+password. It will ask to save your PAUSE ID, so you wont have to enter it next
+time.
+
 == Roadmap
-- Add `upload` command to upload a given `.tar.gz` distribution to PAUSE
 - Add `push` command to release a new version of a module, and upload it to PAUSE
 - Make `new` also write a `.travis.yml`
 - Add tests

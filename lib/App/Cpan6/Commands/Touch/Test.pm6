@@ -28,8 +28,11 @@ use v{%meta<perl>};
 
 use Test;
 
-ok(True);
+ok True;
 
+done-testing;
+
+# vim: ft=perl6
 EOF
 ;
 	spurt($path.absolute, $template);

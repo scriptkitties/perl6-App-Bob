@@ -26,8 +26,8 @@ multi sub MAIN("depend", Str $module, Bool :$skip-install = False) is export
 	}
 
 	# Add the new dependency if its not listed yet
-	if (%meta<depends><runtime><requires> ∌ $module) {
-		%meta<depends><runtime><requires>.push: $module;
+	if (%meta<depends> ∌ $module) {
+		%meta<depends>.push: $module;
 	}
 
 	# Write the new META6.json

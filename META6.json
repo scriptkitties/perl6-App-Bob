@@ -40,6 +40,7 @@
     "App::Cpan6::Commands::Touch": "lib/App/Cpan6/Commands/Touch.pm6",
     "App::Cpan6::Commands::Touch::Bin": "lib/App/Cpan6/Commands/Touch/Bin.pm6",
     "App::Cpan6::Commands::Touch::Lib": "lib/App/Cpan6/Commands/Touch/Lib.pm6",
+    "App::Cpan6::Commands::Touch::Test": "lib/App/Cpan6/Commands/Touch/Test.pm6",
     "App::Cpan6::Commands::Upload": "lib/App/Cpan6/Commands/Upload.pm6",
     "App::Cpan6::Config": "lib/App/Cpan6/Config.pm6",
     "App::Cpan6::Input": "lib/App/Cpan6/Input.pm6",

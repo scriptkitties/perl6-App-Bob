@@ -23,6 +23,7 @@ sub get-config(--> Config) is export
 			email => "",
 			perl => "c",
 			license => "GPL-3.0",
+			dir-prefix => "perl6-",
 		),
 		pause => %(
 			id => ""

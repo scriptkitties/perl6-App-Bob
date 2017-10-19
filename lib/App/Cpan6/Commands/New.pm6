@@ -14,7 +14,7 @@ multi sub MAIN("new", Str $name, Bool :$git = True) is export
 	my Config $config = get-config;
 
 	# Create a directory name for the module
-	my $dir-name = "perl6-" ~ $name.subst("::", "-", :g);
+	my $dir-name = $config.get("new-module.dir-prefix") ~ $name.subst("::", "-", :g);
 
 	# Make sure it isn't already taken on the local system
 	if ($dir-name.IO.e) {

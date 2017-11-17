@@ -9,9 +9,7 @@
     "JSON::Fast",
     "Template::Mustache",
     "MIME::Base64",
-    "File::Temp",
-    "curl:from<bin>",
-    "tar:from<bin>"
+    "File::Temp"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",

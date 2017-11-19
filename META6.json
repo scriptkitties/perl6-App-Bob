@@ -6,10 +6,11 @@
   "depends": [
     "Config",
     "Config::Parser::toml",
+    "File::Temp",
     "JSON::Fast",
-    "Template::Mustache",
     "MIME::Base64",
-    "File::Temp"
+    "Template::Mustache",
+    "Terminal::Readsecret"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",

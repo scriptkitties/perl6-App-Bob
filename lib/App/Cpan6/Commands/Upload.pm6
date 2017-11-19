@@ -107,5 +107,5 @@ multi sub MAIN("upload", Str $dist, Str :$pause-id = "", Str :$pause-password = 
 	}
 
 	# Report success to the user
-	say "Uploaded {%meta<name>}:v{%meta<version>} to CPAN";
+	say "Uploaded {%meta<name>}:ver<{%meta<version>}> to CPAN";
 }

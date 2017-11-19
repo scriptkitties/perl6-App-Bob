@@ -24,7 +24,6 @@
     "App::Cpan6::Commands::Push": "lib/App/Cpan6/Commands/Push.pm6",
     "App::Cpan6::Commands::Release": "lib/App/Cpan6/Commands/Release.pm6",
     "App::Cpan6::Commands::Test": "lib/App/Cpan6/Commands/Test.pm6",
-    "App::Cpan6::Commands::Touch": "lib/App/Cpan6/Commands/Touch.pm6",
     "App::Cpan6::Commands::Touch::Bin": "lib/App/Cpan6/Commands/Touch/Bin.pm6",
     "App::Cpan6::Commands::Touch::Lib": "lib/App/Cpan6/Commands/Touch/Lib.pm6",
     "App::Cpan6::Commands::Touch::Test": "lib/App/Cpan6/Commands/Touch/Test.pm6",

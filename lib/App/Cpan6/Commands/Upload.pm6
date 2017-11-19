@@ -25,7 +25,7 @@ multi sub MAIN("upload", Str @dists) is export
 	}
 
 	# Get PAUSE password
-	$config.set("pause.password", password());
+	$config.set("pause.password", password("PAUSE password"));
 
 	# Run upload for every given path
 	for @dists -> $dist {

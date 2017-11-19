@@ -32,8 +32,8 @@ multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) i
 	}
 
 	run «
-		tar czf {$output}
-		--transform {$transform}
+		tar czf $output
+		--transform $transform
 		--exclude-vcs
 		--exclude-vcs-ignores
 		--exclude=.[^/]*
@@ -45,8 +45,8 @@ multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) i
 	if ($verbose) {
 		my $list = run « tar --list -f $output », :out;
 
-		for $list.out -> $line {
-			say "  $line";
+		for $list.out.lines -> $line {
+			say "  {$line}";
 		}
 	}
 }

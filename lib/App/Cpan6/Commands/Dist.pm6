@@ -7,7 +7,7 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Dist;
 
-multi sub MAIN("dist", Str $path, Bool :$force = False) is export
+multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) is export
 {
 	chdir $path;
 
@@ -31,7 +31,7 @@ multi sub MAIN("dist", Str $path, Bool :$force = False) is export
 		return;
 	}
 
-	my $proc = run «
+	run «
 		tar czf {$output}
 		--transform {$transform}
 		--exclude-vcs
@@ -41,16 +41,24 @@ multi sub MAIN("dist", Str $path, Bool :$force = False) is export
 	», :err;
 
 	say "Created {$output}";
+
+	if ($verbose) {
+		my $list = run « tar --list -f $output », :out;
+
+		for $list.out -> $line {
+			say "  $line";
+		}
+	}
 }
 
-multi sub MAIN("dist", Bool :$force = False) is export
+multi sub MAIN("dist", Bool :$force = False, :$verbose = True) is export
 {
-	MAIN("dist", ".", :$force);
+	MAIN("dist", ".", :$force, :$verbose);
 }
 
-multi sub MAIN("dist", @paths, Bool :$force = False) is export
+multi sub MAIN("dist", @paths, Bool :$force = False, :$verbose = True) is export
 {
 	for @paths -> $path {
-		MAIN("dist", $path, :$force);
+		MAIN("dist", $path, :$force, :$verbose);
 	}
 }

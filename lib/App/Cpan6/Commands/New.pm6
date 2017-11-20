@@ -86,7 +86,7 @@ EOF
 		}
 	}
 
-	say "Created new project folder at {$dir-name.IO.absolute}";
+	say "Created new project folder at {".".IO.absolute}";
 }
 
 multi sub MAIN("new", Bool :$force = False, Bool :$git = True) is export

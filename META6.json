@@ -39,6 +39,7 @@
     "cpan6": "bin/cpan6"
   },
   "resources": [
+    
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
@@ -47,5 +48,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.11.1"
+  "version": "0.12.0"
 }

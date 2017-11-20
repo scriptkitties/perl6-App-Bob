@@ -10,7 +10,9 @@ multi sub MAIN("touch", "resource", Str:D $resource) is export
 {
 	my %meta = get-meta;
 
+	mkdir "resources" unless "resources".IO.d;
 	chdir "resources";
+
 	my $path = ".".IO.add($resource);
 
 	# Check for duplicate entry

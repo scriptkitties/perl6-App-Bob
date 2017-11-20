@@ -10,7 +10,8 @@
     "JSON::Fast",
     "MIME::Base64",
     "Template::Mustache",
-    "Terminal::Readsecret"
+    "Terminal::Readsecret",
+    "File::Which"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",

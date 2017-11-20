@@ -6,6 +6,7 @@ use App::Cpan6::Config;
 use App::Cpan6::Input;
 use App::Cpan6::Meta;
 use Config;
+use File::Which;
 
 unit module App::Cpan6::Commands::New;
 
@@ -78,9 +79,11 @@ EOF
 
 		spurt(".gitignore", $gitignore);
 
-		run « git init »;
-		run « git add . »;
-		run « git commit -m "Initial commit" »;
+		if (which("git")) {
+			run « git init »;
+			run « git add . »;
+			run « git commit -m "Initial commit" »;
+		}
 	}
 
 	say "Created new project folder at {$dir-name.IO.absolute}";

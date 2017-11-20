@@ -5,10 +5,11 @@ use v6;
 use App::Cpan6::Commands::Dist;
 use App::Cpan6::Input;
 use App::Cpan6::Meta;
+use File::Which;
 
 unit module App::Cpan6::Commands::Bump;
 
-multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
+multi sub MAIN("bump", Str $path, Bool :$ask = False, Bool :$force = False) is export
 {
 	# Define bump types
 	my Str @bump-types = (
@@ -25,7 +26,7 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
 	if ($path.IO.add(".git").e) {
 		my $git-cmd = run « git status --short », :out;
 
-		if (0 < $git-cmd.out.lines.elems) {
+		if (0 < $git-cmd.out.lines.elems && !$force) {
 			die "Refusing to work on an unclean directory.";
 		}
 	}
@@ -89,7 +90,7 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
 	put-meta(:%meta);
 
 	# Commit the updated META6
-	if ($path.IO.add(".git").e) {
+	if ($path.IO.add(".git").e && which("git")) {
 		run « git add META6.json »;
 		run « git commit -m "Bump version to {%meta<version>}" »;
 		run « git tag "v{%meta<version>}" »;
@@ -101,14 +102,14 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False) is export
 	MAIN("dist", $path, :force);
 }
 
-multi sub MAIN("bump", Bool :$ask = False) is export
+multi sub MAIN("bump", Bool :$ask = False, Bool :$force = False) is export
 {
-	MAIN("bump", ".", :$ask);
+	MAIN("bump", ".", :$ask, :$force);
 }
 
-multi sub MAIN("bump", *@paths, Bool :$ask = False) is export
+multi sub MAIN("bump", *@paths, Bool :$ask = False, Bool :$force = False) is export
 {
 	for @paths -> $path {
-		MAIN("bump", $path.IO.absolute, :$ask);
+		MAIN("bump", $path.IO.absolute, :$ask, :$force);
 	}
 }

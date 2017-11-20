@@ -1,0 +1,7 @@
+#! /usr/bin/env false
+
+use v{{ perl-version }};
+
+unit module {{ provide }};
+
+# vim: ft=perl6

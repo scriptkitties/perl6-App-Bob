@@ -36,10 +36,18 @@
     "App::Cpan6::Meta": "lib/App/Cpan6/Meta.pm6",
     "App::Cpan6::Package::Ebuild": "lib/App/Cpan6/Package/Ebuild.pm6",
     "App::Cpan6::Path": "lib/App/Cpan6/Path.pm6",
+    "App::Cpan6::Template": "lib/App/Cpan6/Template.pm6",
     "cpan6": "bin/cpan6"
   },
   "resources": [
-    
+    "templates/gitignore",
+    "templates/editorconfig",
+    "templates/ebuild",
+    "templates/module/test",
+    "templates/module/lib",
+    "templates/module/unit",
+    "templates/module/class",
+    "templates/module/bin"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
@@ -48,5 +56,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.12.0"
+  "version": "0.12.1"
 }

@@ -3,6 +3,7 @@
 use v6;
 
 use App::Cpan6::Meta;
+use App::Cpan6::Template;
 
 unit module App::Cpan6::Commands::Touch::Bin;
 
@@ -19,20 +20,7 @@ multi sub MAIN("touch", "bin", Str $provide) is export
 
 	mkdir $path.parent.absolute;
 
-	# Create template
-	my $template = qq:to/EOF/
-#! /usr/bin/env perl6
-
-use v{%meta<perl>};
-
-sub MAIN
-\{
-	…
-\}
-EOF
-;
-
-	spurt($path.absolute, $template);
+	template("module/bin", $path.absolute, context => %(perl-version => %meta<perl>));
 
 	# Update META6.json
 	%meta<provides>{$provide} = $path.relative;

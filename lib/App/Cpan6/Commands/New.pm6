@@ -52,36 +52,16 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	mkdir "resources" unless $force && "r".IO.d;
 	mkdir "t" unless $force && "t".IO.d;
 
-my $editorconfig = q:to/EOF/
-[*]
-charset              = utf8
-end_of_line          = lf
-insert_final_newline = true
-indent_style         = tab
-
-[*.json]
-indent_style = space
-indent_size  = 2
-EOF
-;
+	copy(%?RESOURCES<templates/editorconfig>.absolute, ".editorconfig", :!createonly);
 
 	# Write some files
 	put-meta(:%meta);
 
 	if ($git) {
-		my $gitignore = q:to/EOF/
-# Perl 6 precompiled files
-.precomp
-
-# Editor files
-*~     # emacs
-.*.sw? # vim
-EOF
-		;
-
-		spurt(".gitignore", $gitignore);
+		copy(%?RESOURCES<templates/gitignore>.absolute, ".gitignore", :!createonly);
 
 		if (which("git")) {
+			# TODO: Use File::Directory::Tree to remove .git if it exists (can happen with --force)
 			run « git init »;
 			run « git add . »;
 			run « git commit -m "Initial commit" »;

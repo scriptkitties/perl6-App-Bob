@@ -9,7 +9,7 @@ use Config;
 
 unit module App::Cpan6::Commands::New;
 
-multi sub MAIN("new", Str $name, Bool :$git = True) is export
+multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is export
 {
 	my Config $config = get-config;
 
@@ -17,8 +17,9 @@ multi sub MAIN("new", Str $name, Bool :$git = True) is export
 	my $dir-name = $config.get("new-module.dir-prefix") ~ $name.subst("::", "-", :g);
 
 	# Make sure it isn't already taken on the local system
-	if ($dir-name.IO.e) {
-		die "Directory named $dir-name already exists.";
+	if (!$force && $dir-name.IO.e && dir($dir-name)) {
+		note "$dir-name is not empty!";
+		return;
 	}
 
 	# Ask the user about some information on the module
@@ -42,11 +43,11 @@ multi sub MAIN("new", Str $name, Bool :$git = True) is export
 	);
 
 	# Create the module skeleton
-	mkdir $dir-name;
+	mkdir $dir-name unless $dir-name.IO.d;
 	chdir $dir-name;
-	mkdir "bin";
-	mkdir "lib";
-	mkdir "t";
+	mkdir "bin" unless $force && "bin".IO.d;
+	mkdir "lib" unless $force && "lib".IO.d;
+	mkdir "t" unless $force && "t".IO.d;
 
 my $editorconfig = q:to/EOF/
 [*]
@@ -85,7 +86,7 @@ EOF
 	say "Created new project folder at {$dir-name.IO.absolute}";
 }
 
-multi sub MAIN("new", Bool :$git = True) is export
+multi sub MAIN("new", Bool :$force = False, Bool :$git = True) is export
 {
-	MAIN("new", ask("Name of the module"), :$git);
+	MAIN("new", ask("Name of the module"), :$force, :$git);
 }

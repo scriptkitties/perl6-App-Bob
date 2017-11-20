@@ -11,7 +11,8 @@
     "MIME::Base64",
     "Template::Mustache",
     "Terminal::Readsecret",
-    "File::Which"
+    "File::Which",
+    "File::Directory::Tree"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",

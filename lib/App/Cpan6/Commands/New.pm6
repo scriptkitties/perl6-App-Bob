@@ -7,6 +7,7 @@ use App::Cpan6::Input;
 use App::Cpan6::Meta;
 use Config;
 use File::Which;
+use File::Directory::Tree;
 
 unit module App::Cpan6::Commands::New;
 
@@ -61,7 +62,8 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 		copy(%?RESOURCES<templates/gitignore>.absolute, ".gitignore", :!createonly);
 
 		if (which("git")) {
-			# TODO: Use File::Directory::Tree to remove .git if it exists (can happen with --force)
+			rmtree ".git" if ".git".IO.d;
+
 			run « git init »;
 			run « git add . »;
 			run « git commit -m "Initial commit" »;

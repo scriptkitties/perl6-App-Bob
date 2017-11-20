@@ -115,7 +115,6 @@ dir-prefix = "perl6-"
 ----
 
 == Roadmap
-- Add `push` command to release a new version of a module, and upload it to PAUSE
 - Make `new` also write a `.travis.yml`
 - Add tests
 - Clean up the codebase

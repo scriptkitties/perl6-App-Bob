@@ -41,6 +41,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 		version => "0.0.0",
 		provides => %(),
 		depends => (),
+		resources => (),
 	);
 
 	# Create the module skeleton
@@ -48,6 +49,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	chdir $dir-name;
 	mkdir "bin" unless $force && "bin".IO.d;
 	mkdir "lib" unless $force && "lib".IO.d;
+	mkdir "resources" unless $force && "r".IO.d;
 	mkdir "t" unless $force && "t".IO.d;
 
 my $editorconfig = q:to/EOF/

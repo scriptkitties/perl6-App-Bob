@@ -11,5 +11,6 @@ use App::Cpan6::Commands::Push;
 use App::Cpan6::Commands::Test;
 use App::Cpan6::Commands::Touch::Bin;
 use App::Cpan6::Commands::Touch::Lib;
+use App::Cpan6::Commands::Touch::Resource;
 use App::Cpan6::Commands::Touch::Test;
 use App::Cpan6::Commands::Upload;

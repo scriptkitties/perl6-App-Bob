@@ -16,7 +16,7 @@
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",
   "name": "App::Cpan6",
-  "perl": "6",
+  "perl": "6.c",
   "provides": {
     "App::Cpan6": "lib/App/Cpan6.pm6",
     "App::Cpan6::Commands::Bump": "lib/App/Cpan6/Commands/Bump.pm6",
@@ -28,6 +28,7 @@
     "App::Cpan6::Commands::Test": "lib/App/Cpan6/Commands/Test.pm6",
     "App::Cpan6::Commands::Touch::Bin": "lib/App/Cpan6/Commands/Touch/Bin.pm6",
     "App::Cpan6::Commands::Touch::Lib": "lib/App/Cpan6/Commands/Touch/Lib.pm6",
+    "App::Cpan6::Commands::Touch::Resource": "lib/App/Cpan6/Commands/Touch/Resource.pm6",
     "App::Cpan6::Commands::Touch::Test": "lib/App/Cpan6/Commands/Touch/Test.pm6",
     "App::Cpan6::Commands::Upload": "lib/App/Cpan6/Commands/Upload.pm6",
     "App::Cpan6::Config": "lib/App/Cpan6/Config.pm6",
@@ -37,6 +38,8 @@
     "App::Cpan6::Path": "lib/App/Cpan6/Path.pm6",
     "cpan6": "bin/cpan6"
   },
+  "resources": [
+  ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
     "cli",

@@ -67,7 +67,7 @@ multi sub MAIN("bump", Str $path, Bool :$ask = False, Bool :$force = False) is e
 	my @new-version = @version;
 
 	given @bump-types[$bump].lc {
-		when "major"  { 
+		when "major"  {
 			@new-version[0]++;
 			@new-version[1] = 0;
 			@new-version[2] = 0;

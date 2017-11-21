@@ -1,0 +1,16 @@
+cpan6 - A tool to assist in creating and sharing CPAN modules
+
+Available commands
+  bump   [--ask] [--force]
+  depend [--skip-install] <modules...>
+  dist   [--force] [--verbose]
+  help
+  new    [--force] [--git] [name]
+  push   [--no-bump] <path>
+  test
+  touch  bin      <provide>
+  touch  class    <provide>
+  touch  resource <resource>
+  touch  test     <test>
+  touch  unit     <provide>
+  upload [--pause-id=<id>] [--pause-password=<password>] <dists...>

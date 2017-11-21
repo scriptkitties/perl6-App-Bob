@@ -23,6 +23,7 @@
     "App::Cpan6::Commands::Bump": "lib/App/Cpan6/Commands/Bump.pm6",
     "App::Cpan6::Commands::Depend": "lib/App/Cpan6/Commands/Depend.pm6",
     "App::Cpan6::Commands::Dist": "lib/App/Cpan6/Commands/Dist.pm6",
+    "App::Cpan6::Commands::Help": "lib/App/Cpan6/Commands/Help.pm6",
     "App::Cpan6::Commands::New": "lib/App/Cpan6/Commands/New.pm6",
     "App::Cpan6::Commands::Pkg::Ebuild": "lib/App/Cpan6/Commands/Pkg/Ebuild.pm6",
     "App::Cpan6::Commands::Push": "lib/App/Cpan6/Commands/Push.pm6",
@@ -50,7 +51,8 @@
     "templates/module/class",
     "templates/module/bin",
     "templates/vim-line/tab",
-    "templates/vim-line/space"
+    "templates/vim-line/space",
+    "helpfile"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
@@ -59,5 +61,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.14.2"
+  "version": "0.15.0"
 }

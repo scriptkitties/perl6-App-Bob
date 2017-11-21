@@ -56,6 +56,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	mkdir "t" unless $force && "t".IO.d;
 
 	template("editorconfig", ".editorconfig", context => $config<style>);
+	template("travis.yml", ".travis.yml");
 
 	# Write some files
 	put-meta(:%meta);

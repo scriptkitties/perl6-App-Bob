@@ -37,5 +37,5 @@ multi sub template (
 	:%context,
 	Bool:D :$clobber = False
 ) is export {
-	template($template, $destination.IO.path, :%context, :$clobber);
+	template($template, $destination.IO, :%context, :$clobber);
 }

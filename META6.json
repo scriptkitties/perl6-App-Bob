@@ -6,13 +6,13 @@
   "depends": [
     "Config",
     "Config::Parser::toml",
+    "File::Directory::Tree",
     "File::Temp",
+    "File::Which",
     "JSON::Fast",
     "MIME::Base64",
     "Template::Mustache",
-    "Terminal::Readsecret",
-    "File::Which",
-    "File::Directory::Tree"
+    "Terminal::Readsecret"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",
@@ -43,19 +43,19 @@
     "cpan6": "bin/cpan6"
   },
   "resources": [
-    "templates/gitignore",
-    "templates/editorconfig",
-    "templates/ebuild",
-    "templates/module/test",
-    "templates/module/lib",
-    "templates/module/unit",
-    "templates/module/class",
-    "templates/module/bin",
-    "templates/vim-line/tab",
-    "templates/vim-line/space",
     "helpfile",
+    "man/cpan6.1",
+    "templates/ebuild",
+    "templates/editorconfig",
+    "templates/gitignore",
+    "templates/module/bin",
+    "templates/module/class",
+    "templates/module/lib",
+    "templates/module/test",
+    "templates/module/unit",
     "templates/travis.yml",
-    "man/cpan6.1"
+    "templates/vim-line/space",
+    "templates/vim-line/tab"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [

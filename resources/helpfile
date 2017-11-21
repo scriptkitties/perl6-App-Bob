@@ -5,7 +5,7 @@ Available commands
   depend [--skip-install] <modules...>
   dist   [--force] [--verbose]
   help
-  new    [--force] [--git] [name]
+  new    [--force] [--git] [--travis] [name]
   push   [--no-bump] <path>
   test
   touch  bin      <provide>

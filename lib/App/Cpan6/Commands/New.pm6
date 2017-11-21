@@ -5,9 +5,10 @@ use v6;
 use App::Cpan6::Config;
 use App::Cpan6::Input;
 use App::Cpan6::Meta;
+use App::Cpan6::Template;
 use Config;
-use File::Which;
 use File::Directory::Tree;
+use File::Which;
 
 unit module App::Cpan6::Commands::New;
 
@@ -53,7 +54,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	mkdir "resources" unless $force && "r".IO.d;
 	mkdir "t" unless $force && "t".IO.d;
 
-	copy(%?RESOURCES<templates/editorconfig>.absolute, ".editorconfig", :!createonly);
+	template("editorconfig", ".editorconfig", context => $config<style>);
 
 	# Write some files
 	put-meta(:%meta);

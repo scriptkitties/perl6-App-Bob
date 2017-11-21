@@ -44,6 +44,11 @@ archive and upload the archive to PAUSE.
     created as needed. The class will also be added to the `provides` section
     of your `META6.json`.
 
+`cpan6 touch unit My::New::Unit`::
+    Creates a new Perl 6 unit module file, with a default skeleton. Directories
+    will be created as needed. The unit module will also be added to the
+    `provides` section of your `META6.json`.
+
 `cpan6 dist`::
     Wraps the current directory into a `.tar.gz` distribution, and saves it to
     your cpan6 dist folder. This is `~/.local/var/cpan6/dists` by default.

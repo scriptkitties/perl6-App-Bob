@@ -1,11 +1,12 @@
 = CPAN6(1)
+:toc:
 :doctype: manpage
 
 == NAME
 cpan6 - a tool to assist in creating and sharing CPAN modules
 
 == SYNOPSIS
-*cpan6* [options] COMMAND [ARGS]
+*cpan6* [OPTIONS] COMMAND [ARGS]
 
 == DESCRIPTION
 The `cpan6` program is a Perl 6 module which is aimed to help developers in
@@ -17,54 +18,54 @@ It can create the skeleton of a new module project, add more files later on
 archive and upload the archive to PAUSE.
 
 == COMMANDS
-*new*::
-    Create a new Perl 6 module skeleton.
+=== new
+Create a new Perl 6 module skeleton.
 
 == OPTIONS
-*--force*::
-    Remove all sanity checks on a given command. This can have unwanted
-    results, hence you should only use this if you know what you're doing.
-    Using this option can result in loss of data.
+=== --force
+Remove all sanity checks on a given command. This can have unwanted results,
+hence you should only use this if you know what you're doing.  Using this
+option can result in loss of data.
 
-*--verbose*::
-    Make the given command more verbose. Mostly useful for finding out why
-    something is failing for you, or to help people assist you.
+=== --verbose
+Make the given command more verbose. Mostly useful for finding out why
+something is failing for you, or to help people assist you.
 
 == EXAMPLES
-`cpan6 bootstrap man`::
-    Install the man pages bundled with `cpan6`.
+=== cpan6 bootstrap man
+Install the man pages bundled with `cpan6`.
 
-`cpan6 bootstrap config`::
-    Build a configuration file for `cpan6`. You will be prompted for all
-    options available. If you already have a configuration file, the options
-    already configured can be skipped by hitting enter.
+=== cpan6 bootstrap config
+Build a configuration file for `cpan6`. You will be prompted for all options
+available. If you already have a configuration file, the options already
+configured can be skipped by hitting enter.
 
-`cpan6 new My::Little::Module`::
-    Create a new module named `My::Little::Module`. The skeleton required for a
-    module will be created for you. The default prefix is `perl6-` for the
-    directory name, which will result in `perl6-my-little-module` as the
-    resulting directory.
+=== cpan6 new My::Little::Module
+Create a new module named `My::Little::Module`. The skeleton required for a
+module will be created for you. The default prefix is `perl6-` for the
+directory name, which will result in `perl6-my-little-module` as the resulting
+directory.
 
-`cpan6 depend Config`::
-    Add the `Config` module as a dependency. This will add it to the
-    `META6.json` file and call `zef install Config`.
+=== cpan6 depend Config
+Add the `Config` module as a dependency. This will add it to the `META6.json`
+file and call `zef install Config`.
 
-`cpan6 touch class My::New::Class`::
-    Creates a new Perl 6 class, with a default skeleton. Directories will be
-    created as needed. The class will also be added to the `provides` section
-    of your `META6.json`.
+=== cpan6 touch class My::New::Class
+Creates a new Perl 6 class, with a default skeleton. Directories will be
+created as needed. The class will also be added to the `provides` section of
+your `META6.json`.
 
-`cpan6 touch unit My::New::Unit`::
-    Creates a new Perl 6 unit module file, with a default skeleton. Directories
-    will be created as needed. The unit module will also be added to the
-    `provides` section of your `META6.json`.
+=== cpan6 touch unit My::New::Unit
+Creates a new Perl 6 unit module file, with a default skeleton. Directories
+will be created as needed. The unit module will also be added to the `provides`
+section of your `META6.json`.
 
-`cpan6 dist`::
-    Wraps the current directory into a `.tar.gz` distribution, and saves it to
-    your cpan6 dist folder. This is `~/.local/var/cpan6/dists` by default.
+=== cpan6 dist
+Wraps the current directory into a `.tar.gz` distribution, and saves it to your
+cpan6 dist folder. This is `~/.local/var/cpan6/dists` by default.
 
-`cpan6 upload ~/.local/var/cpan6/dists/My-Little-Module-0.1.0.tar.gz`::
-    Uploads the given `.tar.gz` archive to PAUSE.
+=== cpan6 upload `~/.local/var/cpan6/dists/My-Little-Module-0.1.0.tar.gz`
+Uploads the given `.tar.gz` archive to PAUSE.
 
 == BUGS
 Bugs can be reported on the Github page of this project:

@@ -18,8 +18,72 @@ It can create the skeleton of a new module project, add more files later on
 archive and upload the archive to PAUSE.
 
 == COMMANDS
-=== new
-Create a new Perl 6 module skeleton.
+=== [ --dir=/usr/share/man ] bootstrap man [ page ]
+Attempt to bootstrap the man pages into the given `--dir`. Optionally takes a
+`page`, which will limit to attempt installation for the given page only.
+
+=== bump [ patch | minor | major ]
+Bumps the module's patch, minor or major version. If no bump type is supplied,
+it will be prompted. If a `.git` repository is found, a commit and a tag will
+be created as well.
+
+=== [ --skip-install ] depend < modules ... >
+Add a dependency to one or more modules. Will attempt to install the module
+locally as well, unless `--skip-install` is supplied.
+
+=== dist < paths ... >
+Create a distribution from a module in a given path. Multiple paths can be
+supplied to create multiple dists in one go. If no path is supplied, the
+current directory will be used.
+
+=== help
+Shows a small overview of all possible commands and their arguments.
+
+=== [ --git ] [ --travis ] new [ name ]
+Create a new Perl 6 module skeleton. A name can be supplied as argument, but
+will be prompted for if not supplied. Options for git and travis are available,
+and enabled by default. To disable these, use `--/git` or `--/travis`,
+respectively.
+
+=== [ --no-bump ] push < paths ... >
+Pushes one or more paths to PAUSE. This is a shorthand for `bump`, `dist` and
+`upload`. The `bump` part can be skipped using `--/bump`.
+
+=== test
+Run the default test script, `prove -e "perl6 -Ilib" t`.
+
+=== touch bin <name>
+Create a new runnable Perl 6 script in the `bin/` directory. A small skeleton
+template is inserted into the new file. Additionally, the `META6.json` is
+updated accordingly to contain the new file in its `provides` section.
+
+=== touch class
+Create a new module file in the `lib/` directory. A skeleton for a class
+structure is inserted in the new file, and directories are created needed to
+place the file in the correct location. Additionally, the `META6.json` is
+updated accordingly to contain the new module file in its `provides` section.
+
+=== touch resource
+Create a new resource file in the `resources/` directory. Directories are
+created as needed. Additionally, the `META6.json` is updated accordingly to
+contain the new resource in its `resources` section.
+
+=== touch test
+Create a new test spec file in the `t/` directory. Directories are created as
+needed.
+
+=== touch unit
+Create a new unit module file in the `lib/` directory. A skeleton for a unit
+module structure is inserted in the new file, and directories are created
+needed to place the file in the correct location. Additionally, the
+`META6.json` is updated accordingly to contain the new module file in its
+`provides` section.
+
+=== [ --pause-id="" ] [ --pause-password="" ] upload < dists ... >
+Uploads the given dists to PAUSE. A PAUSE ID and password for authentication
+can be supplied using `--pause-id=<id>` and `--pause-password=<password>`
+respectively. If not supplied, these will be read from your configuration. If
+these are not set in the configuration, they will be prompted for.
 
 == OPTIONS
 === --force

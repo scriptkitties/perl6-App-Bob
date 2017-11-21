@@ -5,10 +5,16 @@
 cpan6 - a tool to assist in creating and sharing CPAN modules
 
 == SYNOPSIS
-*cpan6* 'COMMAND'
+*cpan6* ['options'] 'COMMAND' ['ARGS']
 
 == DESCRIPTION
-A neat description should come here.
+The `cpan6` program is a Perl 6 module which is aimed to help developers in
+creating new modules. It should be able to assist from the very start through
+the end of actually publishing a module on PAUSE.
+
+It can create the skeleton of a new module project, add more files later on
+(and update your `META6.json` accordingly), package it up to a distributable
+archive and upload the archive to PAUSE.
 
 == COMMANDS
 *new*::
@@ -47,7 +53,7 @@ A neat description should come here.
 
 == BUGS
 Bugs can be reported on the Github page of this project:
-https://github.com/scriptkitties/perl6-App-Cpan6
+https://github.com/scriptkitties/perl6-App-Cpan6.
 
 == AUTHOR
 Originally written by Patrick Spek <p.spek@tyil.nl>.

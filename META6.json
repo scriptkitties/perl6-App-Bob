@@ -4,15 +4,15 @@
     "Patrick Spek <p.spek@tyil.work>"
   ],
   "depends": [
-    "Config",
-    "Config::Parser::toml",
+    "Config:ver<1.2.2>",
+    "Config::Parser::toml:ver<1.0.1>",
     "File::Directory::Tree",
-    "File::Temp",
-    "File::Which",
-    "JSON::Fast",
-    "MIME::Base64",
-    "Template::Mustache",
-    "Terminal::Readsecret"
+    "File::Temp:ver<0.0.6>",
+    "File::Which:ver<1.0.0>",
+    "JSON::Fast:ver<0.9.6>",
+    "MIME::Base64:ver<1.2.1>",
+    "Template::Mustache:ver<1.0.1>",
+    "Terminal::Readsecret:ver<0.0.3>"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",

@@ -14,6 +14,37 @@ A neat description should come here.
 *new*::
     Create a new Perl 6 module skeleton.
 
+== EXAMPLES
+`cpan6 bootstrap man`::
+    Install the man pages bundled with `cpan6`.
+
+`cpan6 bootstrap config`::
+    Build a configuration file for `cpan6`. You will be prompted for all
+    options available. If you already have a configuration file, the options
+    already configured can be skipped by hitting enter.
+
+`cpan6 new My::Little::Module`::
+    Create a new module named `My::Little::Module`. The skeleton required for a
+    module will be created for you. The default prefix is `perl6-` for the
+    directory name, which will result in `perl6-my-little-module` as the
+    resulting directory.
+
+`cpan6 depend Config`::
+    Add the `Config` module as a dependency. This will add it to the
+    `META6.json` file and call `zef install Config`.
+
+`cpan6 touch class My::New::Class`::
+    Creates a new Perl 6 class, with a default skeleton. Directories will be
+    created as needed. The class will also be added to the `provides` section
+    of your `META6.json`.
+
+`cpan6 dist`::
+    Wraps the current directory into a `.tar.gz` distribution, and saves it to
+    your cpan6 dist folder. This is `~/.local/var/cpan6/dists` by default.
+
+`cpan6 upload ~/.local/var/cpan6/dists/My-Little-Module-0.1.0.tar.gz`::
+    Uploads the given `.tar.gz` archive to PAUSE.
+
 == BUGS
 Bugs can be reported on the Github page of this project:
 https://github.com/scriptkitties/perl6-App-Cpan6

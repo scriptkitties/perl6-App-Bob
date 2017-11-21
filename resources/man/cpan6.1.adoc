@@ -1,4 +1,4 @@
-= CPAN(1)
+= CPAN6(1)
 :doctype: manpage
 
 == NAME

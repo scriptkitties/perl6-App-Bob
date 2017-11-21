@@ -54,7 +54,8 @@
     "templates/vim-line/tab",
     "templates/vim-line/space",
     "helpfile",
-    "templates/travis.yml"
+    "templates/travis.yml",
+    "man/cpan6.1"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [

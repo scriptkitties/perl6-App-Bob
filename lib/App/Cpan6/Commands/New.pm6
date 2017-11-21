@@ -38,6 +38,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 		perl => "6.$perl",
 		name => $name,
 		description => $description,
+		license => $license,
 		authors => ("$author <$email>"),
 		tags => (),
 		version => "0.0.0",

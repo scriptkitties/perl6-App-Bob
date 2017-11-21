@@ -18,6 +18,10 @@ It can create the skeleton of a new module project, add more files later on
 archive and upload the archive to PAUSE.
 
 == COMMANDS
+=== bootstrap config [ option ]
+Update a given configuration option. If no option is supplied, all
+configuration options are presented in alphabetical order.
+
 === [ --dir=/usr/share/man ] bootstrap man [ page ]
 Attempt to bootstrap the man pages into the given `--dir`. Optionally takes a
 `page`, which will limit to attempt installation for the given page only.

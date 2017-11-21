@@ -44,7 +44,7 @@
   },
   "resources": [
     "helpfile",
-    "man/cpan6.1",
+    "man/cpan6.1.adoc",
     "templates/ebuild",
     "templates/editorconfig",
     "templates/gitignore",

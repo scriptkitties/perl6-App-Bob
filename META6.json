@@ -4,8 +4,8 @@
     "Patrick Spek <p.spek@tyil.work>"
   ],
   "depends": [
-    "Config:ver<1.2.2>",
     "Config::Parser::toml:ver<1.0.1>",
+    "Config:ver<1.2.2>",
     "File::Directory::Tree",
     "File::Temp:ver<0.0.6>",
     "File::Which:ver<1.0.0>",
@@ -65,5 +65,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.17.0"
+  "version": "0.17.1"
 }

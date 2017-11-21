@@ -16,8 +16,8 @@ multi sub MAIN(
 	"new",
 	Str $name,
 	Bool :$force = False,
-	Bool :$git = True,
-	Bool :$travis = True,
+	Bool :$no-git = True,
+	Bool :$no-travis = True,
 ) is export {
 	my Config $config = get-config;
 
@@ -61,12 +61,12 @@ multi sub MAIN(
 	mkdir "t" unless $force && "t".IO.d;
 
 	template("editorconfig", ".editorconfig", context => $config<style>);
-	template("travis.yml", ".travis.yml") if $travis;
+	template("travis.yml", ".travis.yml") unless $config<external><travis> || $no-travis;
 
 	# Write some files
 	put-meta(:%meta);
 
-	if ($git) {
+	if ($config<externel><git> && !$no-git) {
 		copy(%?RESOURCES<templates/gitignore>.absolute, ".gitignore", :!createonly);
 
 		if (which("git")) {
@@ -84,8 +84,8 @@ multi sub MAIN(
 multi sub MAIN(
 	"new",
 	Bool :$force = False,
-	Bool :$git = True,
-	Bool :$travis = True,
+	Bool :$no-git = True,
+	Bool :$no-travis = True,
 ) is export {
-	MAIN("new", ask("Name of the module"), :$force, :$git);
+	MAIN("new", ask("Name of the module"), :$force, :$no-git, :$no-travis);
 }

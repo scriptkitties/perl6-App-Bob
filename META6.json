@@ -4,15 +4,15 @@
     "Patrick Spek <p.spek@tyil.work>"
   ],
   "depends": [
-    "Config",
-    "Config::Parser::toml",
-    "File::Temp",
-    "JSON::Fast",
-    "MIME::Base64",
-    "Template::Mustache",
-    "Terminal::Readsecret",
-    "File::Which",
-    "File::Directory::Tree"
+    "Config::Parser::toml:ver<1.0.1>",
+    "Config:ver<1.2.2>",
+    "File::Directory::Tree",
+    "File::Temp:ver<0.0.6>",
+    "File::Which:ver<1.0.0>",
+    "JSON::Fast:ver<0.9.6>",
+    "MIME::Base64:ver<1.2.1>",
+    "Template::Mustache:ver<1.0.1>",
+    "Terminal::Readsecret:ver<0.0.3>"
   ],
   "description": "The CPAN distribution helper",
   "license": "GPL-3.0",
@@ -20,6 +20,8 @@
   "perl": "6.c",
   "provides": {
     "App::Cpan6": "lib/App/Cpan6.pm6",
+    "App::Cpan6::Commands::Bootstrap::Config": "lib/App/Cpan6/Commands/Bootstrap/Config.pm6",
+    "App::Cpan6::Commands::Bootstrap::Man": "lib/App/Cpan6/Commands/Bootstrap/Man.pm6",
     "App::Cpan6::Commands::Bump": "lib/App/Cpan6/Commands/Bump.pm6",
     "App::Cpan6::Commands::Depend": "lib/App/Cpan6/Commands/Depend.pm6",
     "App::Cpan6::Commands::Dist": "lib/App/Cpan6/Commands/Dist.pm6",
@@ -42,18 +44,19 @@
     "cpan6": "bin/cpan6"
   },
   "resources": [
-    "templates/gitignore",
-    "templates/editorconfig",
-    "templates/ebuild",
-    "templates/module/test",
-    "templates/module/lib",
-    "templates/module/unit",
-    "templates/module/class",
-    "templates/module/bin",
-    "templates/vim-line/tab",
-    "templates/vim-line/space",
     "helpfile",
-    "templates/travis.yml"
+    "man/cpan6.1.adoc",
+    "templates/ebuild",
+    "templates/editorconfig",
+    "templates/gitignore",
+    "templates/module/bin",
+    "templates/module/class",
+    "templates/module/lib",
+    "templates/module/test",
+    "templates/module/unit",
+    "templates/travis.yml",
+    "templates/vim-line/space",
+    "templates/vim-line/tab"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
@@ -62,5 +65,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.16.0"
+  "version": "0.17.2"
 }

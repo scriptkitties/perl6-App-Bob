@@ -25,6 +25,10 @@ sub get-config(--> Config) is export
 			license => "GPL-3.0",
 			dir-prefix => "perl6-",
 		),
+		style => %(
+			indent => "tab",
+			spaces => 4,
+		),
 		pause => %(
 			id => ""
 		),

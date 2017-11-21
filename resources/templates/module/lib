@@ -1,5 +1,5 @@
 #! /usr/bin/env false
 
-use v{{ perl-version }};
+use v{{ perl }};
 
-# vim: ft=perl6
+{{ vim }}

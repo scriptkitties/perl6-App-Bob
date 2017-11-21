@@ -48,7 +48,9 @@
     "templates/module/lib",
     "templates/module/unit",
     "templates/module/class",
-    "templates/module/bin"
+    "templates/module/bin",
+    "templates/vim-line/tab",
+    "templates/vim-line/space"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [

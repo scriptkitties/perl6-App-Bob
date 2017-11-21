@@ -1,6 +1,6 @@
 #! /usr/bin/env perl6
 
-use v{{ perl-version }};
+use v{{ perl }};
 
 use Test;
 
@@ -8,4 +8,4 @@ ok True;
 
 done-testing;
 
-# vim: ft=perl6
+{{ vim }}

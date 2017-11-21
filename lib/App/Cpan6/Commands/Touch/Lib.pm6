@@ -2,6 +2,7 @@
 
 use v6;
 
+use App::Cpan6::Config;
 use App::Cpan6::Meta;
 use App::Cpan6::Template;
 
@@ -9,6 +10,7 @@ unit module App::Cpan6::Commands::Touch::Lib;
 
 multi sub MAIN("touch", "lib", Str $provide, Str :$type = "") is export
 {
+	my $config = get-config;
 	my %meta = get-meta;
 	my $path = "./lib".IO;
 
@@ -25,7 +27,8 @@ multi sub MAIN("touch", "lib", Str $provide, Str :$type = "") is export
 
 	my $template = "module/";
 	my %context = %(
-		perl-version => %meta<perl>,
+		perl => %meta<perl>,
+		vim => template("vim-line/$config<style><indent>", context => $config<style>).trim-trailing,
 		:$provide,
 	);
 

@@ -17,7 +17,7 @@ multi sub MAIN("push", $path, Bool :$no-bump = False) is export
 	chdir $path;
 
 	# Call all required actions in order
-	MAIN("bump", $path, :!ask) unless $no-bump;
+	MAIN("bump") unless $no-bump;
 
 	my %meta = get-meta;
 

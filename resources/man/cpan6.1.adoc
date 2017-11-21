@@ -5,7 +5,7 @@
 cpan6 - a tool to assist in creating and sharing CPAN modules
 
 == SYNOPSIS
-*cpan6* ['options'] 'COMMAND' ['ARGS']
+*cpan6* [options] COMMAND [ARGS]
 
 == DESCRIPTION
 The `cpan6` program is a Perl 6 module which is aimed to help developers in

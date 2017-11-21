@@ -20,6 +20,7 @@
   "perl": "6.c",
   "provides": {
     "App::Cpan6": "lib/App/Cpan6.pm6",
+    "App::Cpan6::Commands::Bootstrap::Man": "lib/App/Cpan6/Commands/Bootstrap/Man.pm6",
     "App::Cpan6::Commands::Bump": "lib/App/Cpan6/Commands/Bump.pm6",
     "App::Cpan6::Commands::Depend": "lib/App/Cpan6/Commands/Depend.pm6",
     "App::Cpan6::Commands::Dist": "lib/App/Cpan6/Commands/Dist.pm6",

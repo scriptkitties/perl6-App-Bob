@@ -27,9 +27,9 @@ Bumps the module's patch, minor or major version. If no bump type is supplied,
 it will be prompted. If a `.git` repository is found, a commit and a tag will
 be created as well.
 
-=== [ --skip-install ] depend < modules ... >
+=== [ --no-install ] depend < modules ... >
 Add a dependency to one or more modules. Will attempt to install the module
-locally as well, unless `--skip-install` is supplied.
+locally as well, unless `--no-install` is supplied.
 
 === dist < paths ... >
 Create a distribution from a module in a given path. Multiple paths can be
@@ -39,10 +39,10 @@ current directory will be used.
 === help
 Shows a small overview of all possible commands and their arguments.
 
-=== [ --git ] [ --travis ] new [ name ]
+=== [ --no-git ] [ --no-travis ] new [ name ]
 Create a new Perl 6 module skeleton. A name can be supplied as argument, but
 will be prompted for if not supplied. Options for git and travis are available,
-and enabled by default. To disable these, use `--/git` or `--/travis`,
+and enabled by default. To disable these, use `--no-git` or `--no-travis`,
 respectively.
 
 === [ --no-bump ] push < paths ... >

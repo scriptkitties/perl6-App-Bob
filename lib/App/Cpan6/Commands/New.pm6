@@ -61,12 +61,12 @@ multi sub MAIN(
 	mkdir "t" unless $force && "t".IO.d;
 
 	template("editorconfig", ".editorconfig", context => $config<style>);
-	template("travis.yml", ".travis.yml") unless $no-travis;
+	template("travis.yml", ".travis.yml") unless $config<external><travis> || $no-travis;
 
 	# Write some files
 	put-meta(:%meta);
 
-	if (!$no-git) {
+	if ($config<externel><git> && !$no-git) {
 		copy(%?RESOURCES<templates/gitignore>.absolute, ".gitignore", :!createonly);
 
 		if (which("git")) {

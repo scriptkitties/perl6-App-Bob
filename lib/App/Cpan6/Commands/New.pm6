@@ -12,8 +12,13 @@ use File::Which;
 
 unit module App::Cpan6::Commands::New;
 
-multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is export
-{
+multi sub MAIN(
+	"new",
+	Str $name,
+	Bool :$force = False,
+	Bool :$git = True,
+	Bool :$travis = True,
+) is export {
 	my Config $config = get-config;
 
 	# Create a directory name for the module
@@ -56,6 +61,7 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	mkdir "t" unless $force && "t".IO.d;
 
 	template("editorconfig", ".editorconfig", context => $config<style>);
+	template("travis.yml", ".travis.yml") if $travis;
 
 	# Write some files
 	put-meta(:%meta);
@@ -75,7 +81,11 @@ multi sub MAIN("new", Str $name, Bool :$force = False, Bool :$git = True) is exp
 	say "Created new project folder at {".".IO.absolute}";
 }
 
-multi sub MAIN("new", Bool :$force = False, Bool :$git = True) is export
-{
+multi sub MAIN(
+	"new",
+	Bool :$force = False,
+	Bool :$git = True,
+	Bool :$travis = True,
+) is export {
 	MAIN("new", ask("Name of the module"), :$force, :$git);
 }

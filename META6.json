@@ -52,7 +52,8 @@
     "templates/module/bin",
     "templates/vim-line/tab",
     "templates/vim-line/space",
-    "helpfile"
+    "helpfile",
+    "templates/travis.yml"
   ],
   "source-url": "https://github.com/scriptkitties/perl6-App-Cpan6.git",
   "tags": [
@@ -61,5 +62,5 @@
     "devel",
     "ecosystems"
   ],
-  "version": "0.15.0"
+  "version": "0.16.0"
 }

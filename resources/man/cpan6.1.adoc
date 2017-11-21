@@ -51,7 +51,7 @@ respectively.
 
 === [ --no-bump ] push < paths ... >
 Pushes one or more paths to PAUSE. This is a shorthand for `bump`, `dist` and
-`upload`. The `bump` part can be skipped using `--/bump`.
+`upload`. The `bump` part can be skipped using `--no-bump`.
 
 === test
 Run the default test script, `prove -e "perl6 -Ilib" t`.

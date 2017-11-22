@@ -10,7 +10,7 @@ use File::Temp;
 
 plan 4;
 
-multi sub MAIN() { 0 }; # Solves error code 2 from running the test itself
+multi sub MAIN { 0 } # Solves error code 2 from running the test itself
 
 my $root = tempdir;
 my %test-meta = %(
@@ -48,7 +48,7 @@ subtest "Create a new module", {
 	ok "$module-root/.travis.yml".IO.e, "Travis config created";
 
 	subtest "Verify META6.json", {
-		plan 7;
+		plan 10;
 
 		my %meta = get-meta;
 
@@ -59,6 +59,9 @@ subtest "Create a new module", {
 		is %meta<license>, %test-meta<license>, "license is correct";
 		is %meta<version>, "0.0.0", "version is correct";
 		is %meta<authors>, "{%test-meta<author>} <{%test-meta<email>}>", "author is correct";
+		is %meta<resources>.elems, 0, "resources is empty";
+		is %meta<provides>.elems, 0, "provides is empty";
+		is %meta<depends>.elems, 0, "depends is empty";
 	}
 };
 
@@ -87,7 +90,7 @@ subtest "Create a new module with force", {
 	ok "$module-root/.travis.yml".IO.e, "Travis config created";
 
 	subtest "Verify META6.json", {
-		plan 7;
+		plan 10;
 
 		my %meta = get-meta;
 
@@ -98,6 +101,9 @@ subtest "Create a new module with force", {
 		is %meta<license>, %test-meta<license>, "license is correct";
 		is %meta<version>, "0.0.0", "version is correct";
 		is %meta<authors>, "{%test-meta<author>} <{%test-meta<email>}>", "author is correct";
+		is %meta<resources>.elems, 0, "resources is empty";
+		is %meta<provides>.elems, 0, "provides is empty";
+		is %meta<depends>.elems, 0, "depends is empty";
 	}
 };
 

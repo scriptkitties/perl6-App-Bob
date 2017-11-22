@@ -44,7 +44,7 @@ subtest "Touch unit files", {
 	for @tests -> $test {
 		chdir $module-dir;
 
-		ok get-meta()<provides> ∌ $test, "META6.json does not contain $test yet";
+		ok get-meta()<provides>{$test}:!exists, "META6.json does not contain $test yet";
 		ok MAIN("touch", "unit", $test), "cpan6 touch unit $test";
 
 		chdir $module-dir;

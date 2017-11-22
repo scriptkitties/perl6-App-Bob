@@ -83,7 +83,7 @@ needed to place the file in the correct location. Additionally, the
 `META6.json` is updated accordingly to contain the new module file in its
 `provides` section.
 
-=== [ --pause-id="" ] [ --pause-password="" ] upload < dists ... >
+=== [ --pause-id=<id> ] [ --pause-password=<password> ] upload < dists ... >
 Uploads the given dists to PAUSE. A PAUSE ID and password for authentication
 can be supplied using `--pause-id=<id>` and `--pause-password=<password>`
 respectively. If not supplied, these will be read from your configuration. If

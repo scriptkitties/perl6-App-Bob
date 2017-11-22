@@ -20,14 +20,14 @@ plan 2;
 
 ok MAIN(
 	"new",
-	name => "Local::Test::Bump",
+	name => "Local::Test::Touch::Test",
 	author => "Patrick Spek",
 	email => "p.spek@tyil.work",
 	perl => "c",
 	description => "Nondescript",
 	license => "GPL-3.0",
 	no-user-config => True,
-), "cpan6 new Local::Test::Bump";
+), "cpan6 new Local::Test::Touch::Test";
 
 subtest "Touch test files", {
 	my @tests = <
@@ -35,7 +35,7 @@ subtest "Touch test files", {
 		01-basic
 	>;
 
-	my $module-dir = "$root/perl6-Local-Test-Bump";
+	my $module-dir = "$root/perl6-Local-Test-Touch-Test";
 
 	plan 2 × @tests.elems;
 

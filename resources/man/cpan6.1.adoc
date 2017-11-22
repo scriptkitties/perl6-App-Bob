@@ -61,22 +61,22 @@ Create a new runnable Perl 6 script in the `bin/` directory. A small skeleton
 template is inserted into the new file. Additionally, the `META6.json` is
 updated accordingly to contain the new file in its `provides` section.
 
-=== touch class
+=== touch class <class>
 Create a new module file in the `lib/` directory. A skeleton for a class
 structure is inserted in the new file, and directories are created needed to
 place the file in the correct location. Additionally, the `META6.json` is
 updated accordingly to contain the new module file in its `provides` section.
 
-=== touch resource
+=== touch resource <resource>
 Create a new resource file in the `resources/` directory. Directories are
 created as needed. Additionally, the `META6.json` is updated accordingly to
 contain the new resource in its `resources` section.
 
-=== touch test
+=== touch test <test>
 Create a new test spec file in the `t/` directory. Directories are created as
 needed.
 
-=== touch unit
+=== touch unit <unit>
 Create a new unit module file in the `lib/` directory. A skeleton for a unit
 module structure is inserted in the new file, and directories are created
 needed to place the file in the correct location. Additionally, the

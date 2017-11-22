@@ -142,6 +142,12 @@ Uploads the given `.tar.gz` archive to PAUSE.
 Bugs can be reported on the Github page of this project:
 https://github.com/scriptkitties/perl6-App-Cpan6.
 
+=== cpan6 bootstrap config
+The config bootstrap currently inserts an additional `\` in front of the `@`
+used in the email. This is in error, as the email address is already in double
+quotes. This will have the result of the configuration file completely failing
+to load. Removing the `\` solves the issue for now.
+
 == AUTHOR
 Originally written by Patrick Spek <p.spek@tyil.nl>.
 

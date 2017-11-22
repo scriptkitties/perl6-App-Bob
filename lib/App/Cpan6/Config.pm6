@@ -52,7 +52,7 @@ sub get-config(Bool:D :$no-user-config = False --> Config) is export
 
 	# Add environment config
 	for $config.keys -> $key {
-		my $env = "CPAN6_" ~ $key.subst(/\-\./, "_");
+		my $env = "CPAN6_" ~ $key.subst(/\-|\./, "_", :g).uc;
 
 		next unless %*ENV{$env}:exists;
 

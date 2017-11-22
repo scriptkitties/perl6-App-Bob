@@ -8,6 +8,6 @@ os:
 
 install:
   - rakudobrew build zef
-  - zef install .
+  - zef install --deps-only .
 
 script: AUTHOR_TESTING=1 prove -v -e "perl6 -Ilib" t/

@@ -95,6 +95,9 @@ Remove all sanity checks on a given command. This can have unwanted results,
 hence you should only use this if you know what you're doing.  Using this
 option can result in loss of data.
 
+=== --no-user-config
+Disable loading of user-set configuration options. Used mostly for testing.
+
 === --verbose
 Make the given command more verbose. Mostly useful for finding out why
 something is failing for you, or to help people assist you.

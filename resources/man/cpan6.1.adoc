@@ -155,4 +155,4 @@ Originally written by Patrick Spek <p.spek@tyil.nl>.
 This project is distributed under the terms of the GNU GPL version 3 or later.
 Check the LICENSE file for more information.
 
-// vim: ft=adoc et sw=4
+// vim: ft=asciidoc et sw=4

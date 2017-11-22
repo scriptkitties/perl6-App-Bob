@@ -8,10 +8,11 @@ use App::Cpan6::Commands::New;
 use Test;
 use File::Temp;
 
-my $root = tempdir;
-
 plan 4;
 
+multi sub MAIN() { 0 }; # Solves error code 2 from running the test itself
+
+my $root = tempdir;
 my %test-meta = %(
 	author => "Patrick Spek",
 	description => "Just another test module",

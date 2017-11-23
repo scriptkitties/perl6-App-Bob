@@ -11,6 +11,7 @@
     "File::Which:ver<1.0.0>",
     "JSON::Fast:ver<0.9.6>",
     "MIME::Base64:ver<1.2.1>",
+    "SemVer:ver<0.1.0>",
     "Template::Mustache:ver<1.0.1>",
     "Terminal::Readsecret:ver<0.0.3>"
   ],

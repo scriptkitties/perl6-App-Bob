@@ -31,19 +31,24 @@ ok MAIN(
 ), "cpan6 new Local::Test::Bump";
 
 subtest "Bump patch version", {
+	plan 3;
+
 	is get-meta()<version>, "0.0.0", "Version is now at 0.0.0";
 	ok MAIN("bump", "patch", :force), "Bump patch level";
 	is get-meta()<version>, "0.0.1", "Version is now at 0.0.1";
 };
 
 subtest "Bump minor version", {
+	plan 3;
+
 	is get-meta()<version>, "0.0.1", "Version is now at 0.0.1";
 	ok MAIN("bump", "minor", :force), "Bump minor level";
 	is get-meta()<version>, "0.1.0", "Version is now at 0.1.0";
 };
 
 subtest "Bump major version", {
-	done-testing;
+	plan 3;
+
 	is get-meta()<version>, "0.1.0", "Version is now at 0.1.0";
 	ok MAIN("bump", "major", :force), "Bump major level";
 	is get-meta()<version>, "1.0.0", "Version is now at 1.0.0";

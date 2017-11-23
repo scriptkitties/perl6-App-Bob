@@ -5,11 +5,14 @@ env:
     - PATH=/opt/rakudo-pkg/bin:$PATH
   matrix:
     - VERSION=2017.11 REVISION=01
-
-sudo: required
+    - VERSION=2017.10 REVISION=01
 
 os:
   - linux
+  - osx
+
+git:
+  depth: 3
 
 install:
   - wget "https://github.com/nxadm/rakudo-pkg/releases/download/v${VERSION}/rakudo-pkg-Ubuntu14.04_${VERSION}-${REVISION}_amd64.deb" && sudo dpkg -i *.deb

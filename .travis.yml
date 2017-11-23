@@ -1,9 +1,12 @@
 language: generic
+
 env:
   global:
     - PATH=/opt/rakudo-pkg/bin:$PATH
   matrix:
     - VERSION=2017.11 REVISION=01
+
+sudo: required
 
 os:
   - linux

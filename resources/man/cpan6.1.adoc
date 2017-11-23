@@ -18,7 +18,7 @@ It can create the skeleton of a new module project, add more files later on
 archive and upload the archive to PAUSE.
 
 == COMMANDS
-=== bootstrap config [ option ]
+=== bootstrap config [ option ] [ value ]
 Update a given configuration option. If no option is supplied, all
 configuration options are presented in alphabetical order.
 
@@ -90,6 +90,12 @@ respectively. If not supplied, these will be read from your configuration. If
 these are not set in the configuration, they will be prompted for.
 
 == OPTIONS
+=== --config-file
+Use the specified config file as final config. Any settings given in the config
+file specified by this option will override the settings given in other config
+files. When used with `bootstrap config`, the changed configuration will be
+written to the file specified by this option.
+
 === --force
 Remove all sanity checks on a given command. This can have unwanted results,
 hence you should only use this if you know what you're doing.  Using this

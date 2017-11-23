@@ -8,9 +8,41 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Bootstrap::Config;
 
-multi sub MAIN("bootstrap", "config", Str:D $option) is export
-{
-	my $config = get-config;
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	Str:D $option,
+	Str:D $value,
+	:$config-file,
+	Bool:D :$force = False,
+) is export {
+	my $config = get-config(:$config-file);
+
+	die "Invalid config option $option" unless $config{$option}:exists;
+
+	given $config{$option} {
+		when Bool { $config.set($option, $value.starts-with('y')) }
+		when Int  { $config.set($option, +$value)                 }
+		when Str  { $config.set($option, ~$value)                 }
+	}
+
+	if (!$force) {
+		say "$option = {$config{$option}}";
+		exit unless confirm("Save?");
+	}
+
+	put-config(:$config, path => $config-file // "");
+
+	say "Configuration updated";
+}
+
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	Str:D $option,
+	:@config-file,
+) is export {
+	my $config = get-config(:@config-file);
 
 	die "Invalid config option $option" unless $config{$option}:exists;
 
@@ -23,10 +55,13 @@ multi sub MAIN("bootstrap", "config", Str:D $option) is export
 	put-config(:$config);
 }
 
-multi sub MAIN("bootstrap", "config") is export
-{
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	:@config-file,
+) is export {
 	for get-config.keys -> $option {
-		MAIN("bootstrap", "config", $option);
+		MAIN("bootstrap", "config", $option, :@config-file);
 	}
 }
 

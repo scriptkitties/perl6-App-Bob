@@ -6,8 +6,11 @@ use Config;
 
 unit module App::Cpan6::Config;
 
-sub get-config(Bool:D :$no-user-config = False --> Config) is export
-{
+sub get-config(
+	:$config-file,
+	Bool:D :$no-user-config = False,
+	--> Config
+) is export {
 	my Config $config .= new;
 
 	# Set default config
@@ -35,22 +38,24 @@ sub get-config(Bool:D :$no-user-config = False --> Config) is export
 		),
 	);
 
-	# Add user config
+	my Str @paths;
+
 	unless ($no-user-config) {
-		my Str @paths =
-			"{$*HOME}/.config/cpan6.toml"
+		@paths =
+			"{$*HOME}/.config/cpan6.toml",
 		;
-
-		for @paths -> $path {
-			if (!$path.IO.e) {
-				next;
-			}
-
-			$config.read: $path;
-		}
 	}
 
-	# Add environment config
+	@paths.append: $config-file if $config-file;
+
+	# Add config from files
+	for @paths -> $path {
+		next if !$path.IO.e;
+
+		$config.read: $path;
+	}
+
+	# Add config from environment
 	for $config.keys -> $key {
 		my $env = "CPAN6_" ~ $key.subst(/\-|\./, "_", :g).uc;
 
@@ -64,6 +69,8 @@ sub get-config(Bool:D :$no-user-config = False --> Config) is export
 
 multi sub put-config(Config:D :$config, Str:D :$path) is export
 {
+	return put-config(:$config) if $path eq "";
+
 	$config.write($path);
 }
 

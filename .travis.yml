@@ -5,7 +5,7 @@ env:
     - PATH=/opt/rakudo-pkg/bin:$PATH
   matrix:
     - VERSION=2017.11 REVISION=01
-    - VERSION=2017.10 REVISION=01
+    - VERSION=2017.10 REVISION=02
 
 os:
   - linux

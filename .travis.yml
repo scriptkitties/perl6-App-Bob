@@ -1,13 +1,20 @@
-language: perl6
+language: generic
 
-perl6:
-  - latest
+env:
+  global:
+    - PATH=/opt/rakudo-pkg/bin:$PATH
+  matrix:
+    - TAG=v2017.11    VERSION=2017.11-01
+    - TAG=v2017.10-02 VERSION=2017.10-02
 
 os:
   - linux
 
+git:
+  depth: 3
+
 install:
-  - rakudobrew build zef
+  - wget "https://github.com/nxadm/rakudo-pkg/releases/download/${TAG}/rakudo-pkg-Ubuntu14.04_${VERSION}_amd64.deb" && sudo dpkg -i *.deb
   - zef install --deps-only .
 
 script: AUTHOR_TESTING=1 prove -v -e "perl6 -Ilib" t/

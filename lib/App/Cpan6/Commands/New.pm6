@@ -14,18 +14,26 @@ unit module App::Cpan6::Commands::New;
 
 multi sub MAIN(
 	"new",
-	Str:D :$name = "",
-	Str:D :$author = "",
-	Str:D :$email = "",
-	Str:D :$perl = "",
-	Str:D :$description = "",
-	Str:D :$license = "",
+	Str:D :$name is copy = "",
+	Str:D :$author is copy = "",
+	Str:D :$email is copy = "",
+	Str:D :$perl is copy = "",
+	Str:D :$description is copy = "",
+	Str:D :$license is copy = "",
 	Bool:D :$no-git = False,
 	Bool:D :$no-travis = False,
 	Bool:D :$force = False,
 	Bool:D :$no-user-config = False,
 ) is export {
 	my Config $config = get-config(:$no-user-config);
+
+	# Ask the user about some information on the module
+	$name ||= ask("Module name");
+	$author ||= ask("Your name", $config.get("new-module.author"));
+	$email ||= ask("Your email address", $config.get("new-module.email"));
+	$perl ||= ask("Perl 6 version", $config.get("new-module.perl"));
+	$description ||= ask("Module description", "Nondescript");
+	$license ||= ask("License key", $config.get("new-module.license"));
 
 	# Create a directory name for the module
 	my $dir-name = $config.get("new-module.dir-prefix") ~ $name.subst("::", "-", :g);
@@ -35,14 +43,6 @@ multi sub MAIN(
 		note "$dir-name is not empty!";
 		return;
 	}
-
-	# Ask the user about some information on the module
-	$name ||= ask("Module name");
-	$author ||= ask("Your name", $config.get("new-module.author"));
-	$email ||= ask("Your email address", $config.get("new-module.email"));
-	$perl ||= ask("Perl 6 version", $config.get("new-module.perl"));
-	$description ||= ask("Module description", "Nondescript");
-	$license ||= ask("License key", $config.get("new-module.license"));
 
 	# Create the initial %meta
 	my %meta = %(

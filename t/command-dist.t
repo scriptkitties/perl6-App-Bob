@@ -9,6 +9,11 @@ use Test;
 
 multi sub MAIN { 0 }
 
+if (!which("tar")) {
+	note "'tar' is not available";
+	done-testing;
+}
+
 my $root = tempdir;
 
 # Set custom config

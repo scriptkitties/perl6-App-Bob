@@ -7,6 +7,7 @@ use App::Cpan6::Input;
 use App::Cpan6::Meta;
 use Config;
 use File::Temp;
+use File::Which;
 use MIME::Base64;
 
 unit module App::Cpan6::Commands::Upload;
@@ -41,6 +42,8 @@ multi sub MAIN("upload", Str $dist, Str :$pause-id = "", Str :$pause-password = 
 {
 	# Get the meta info
 	my $tempdir = tempdir;
+
+	die "'tar' is not available on this system" unless which("tar");
 
 	run « tar xzf $dist -C $tempdir »;
 

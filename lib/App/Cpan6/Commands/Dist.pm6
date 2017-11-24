@@ -5,6 +5,7 @@ use v6;
 use App::Cpan6;
 use App::Cpan6::Config;
 use App::Cpan6::Meta;
+use File::Which;
 
 unit module App::Cpan6::Commands::Dist;
 
@@ -21,6 +22,8 @@ multi sub MAIN(
 		note "No META6.json in {$path}";
 		return;
 	}
+
+	die "'tar' is not available on this system" unless which("tar");
 
 	my %meta = get-meta;
 

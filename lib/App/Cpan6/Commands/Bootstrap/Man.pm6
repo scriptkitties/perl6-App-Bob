@@ -19,6 +19,8 @@ multi sub MAIN(
 	for @pages -> $page {
 		MAIN("bootstrap", "man", $page, dir => $dir.IO.absolute, :$verbose);
 	}
+
+	True;
 }
 
 multi sub MAIN(
@@ -43,6 +45,8 @@ multi sub MAIN(
 	if (!move "$page.gz", $destination) {
 		note "Moving $page.gz to $destination failed";
 	}
+
+	True;
 }
 
 # vim: ft=perl6 noet

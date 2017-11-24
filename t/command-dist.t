@@ -11,7 +11,7 @@ use Test;
 multi sub MAIN { 0 }
 
 if (!which("tar")) {
-	note "'tar' is not available";
+	say "'tar' is not available";
 	done-testing;
 	return;
 }

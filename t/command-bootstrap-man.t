@@ -10,13 +10,13 @@ use File::Which;
 use Test;
 
 if (!which("a2x")) {
-	note "'a2x' is not available";
+	say "'a2x' is not available";
 	done-testing;
 	return;
 }
 
 if (!which("gzip")) {
-	note "'gzip' is not available";
+	say "'gzip' is not available";
 	done-testing;
 	return;
 }

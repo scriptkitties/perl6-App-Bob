@@ -5,6 +5,7 @@ use v6.c;
 use App::Cpan6::Commands::New;
 use App::Cpan6::Commands::Dist;
 use File::Temp;
+use File::Which;
 use Test;
 
 multi sub MAIN { 0 }

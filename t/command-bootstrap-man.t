@@ -2,10 +2,11 @@
 
 use v6.c;
 
-use File::Temp;
 use App::Cpan6::Commands::Bootstrap::Man;
 use App::Cpan6::Commands::New;
 use App::Cpan6::Config;
+use File::Temp;
+use File::Which;
 use Test;
 
 if (!which("a2x")) {

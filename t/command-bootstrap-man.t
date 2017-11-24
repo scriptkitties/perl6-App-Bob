@@ -8,9 +8,19 @@ use App::Cpan6::Commands::New;
 use App::Cpan6::Config;
 use Test;
 
-plan 2;
+if (!which("a2x")) {
+	note "'a2x' is not available";
+	done-testing;
+}
+
+if (!which("gzip")) {
+	note "'gzip' is not available";
+	done-testing;
+}
 
 multi sub MAIN { 0 }
+
+plan 2;
 
 my $root = tempdir;
 

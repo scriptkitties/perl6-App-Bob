@@ -25,6 +25,8 @@ sub USAGE is export
 
 		last if $line.starts-with("== ");
 	}
+
+	True;
 }
 
 multi sub MAIN("help") is export

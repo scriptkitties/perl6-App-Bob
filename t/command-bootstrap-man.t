@@ -9,21 +9,12 @@ use File::Temp;
 use File::Which;
 use Test;
 
-if (!which("a2x")) {
-	say "'a2x' is not available";
-	done-testing;
-	exit;
-}
-
-if (!which("gzip")) {
-	say "'gzip' is not available";
-	done-testing;
-	exit;
-}
-
 multi sub MAIN { 0 }
 
 plan 2;
+
+skip-rest "'a2x' is not available" unless which("a2x");
+skip-rest "'gzig' is not available" unless which("gzip");
 
 my $root = tempdir;
 

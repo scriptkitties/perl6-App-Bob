@@ -8,13 +8,11 @@ use File::Temp;
 use File::Which;
 use Test;
 
-multi sub MAIN { 0 }
+plan 4;
 
-if (!which("tar")) {
-	say "'tar' is not available";
-	done-testing;
-	exit;
-}
+skip-rest "'tar' is not available" unless which("tar");
+
+multi sub MAIN { 0 }
 
 my $root = tempdir;
 
@@ -23,8 +21,6 @@ my $root = tempdir;
 %*ENV<CPAN6_EXTERNAL_GIT> = False;
 
 chdir $root;
-
-plan 4;
 
 ok MAIN(
 	"new",

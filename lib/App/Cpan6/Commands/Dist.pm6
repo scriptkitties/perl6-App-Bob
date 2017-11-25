@@ -40,8 +40,18 @@ multi sub MAIN(
 		return;
 	}
 
+	# Set tar flags based on version
+	my $tar-version-cmd = run « tar --version », :out;
+	my $tar-version = $tar-version-cmd.out.lines[0].split(" ")[*-1];
+	my @tar-flags;
+
+	given $tar-version {
+		when "1.27.1" { @tar-flags = « --transform $transform --exclude=.[^/]* » }
+		default { @tar-flags = « --transform $transform --exclude-vcs --exclude-vcs-ignores --exclude=.[^/]* » }
+	}
+
 	if ($verbose) {
-		say "tar czf $output --transform $transform --exclude-vcs --exclude-vcs-ignores --exclude=.[^/]* .";
+		say "tar czf $output {@tar-flags} .";
 	}
 
 	run «

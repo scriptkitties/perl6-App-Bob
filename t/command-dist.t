@@ -13,7 +13,7 @@ multi sub MAIN { 0 }
 if (!which("tar")) {
 	say "'tar' is not available";
 	done-testing;
-	return;
+	exit;
 }
 
 my $root = tempdir;

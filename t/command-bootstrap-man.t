@@ -12,13 +12,13 @@ use Test;
 if (!which("a2x")) {
 	say "'a2x' is not available";
 	done-testing;
-	return;
+	exit;
 }
 
 if (!which("gzip")) {
 	say "'gzip' is not available";
 	done-testing;
-	return;
+	exit;
 }
 
 multi sub MAIN { 0 }

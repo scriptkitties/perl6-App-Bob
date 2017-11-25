@@ -10,7 +10,7 @@ use Test;
 
 plan 4;
 
-skip-rest "'tar' is not available" unless which("tar");
+skip-rest "'tar' is not available" and exit unless which("tar");
 
 multi sub MAIN { 0 }
 

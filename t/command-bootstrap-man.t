@@ -13,8 +13,8 @@ multi sub MAIN { 0 }
 
 plan 2;
 
-skip-rest "'a2x' is not available" unless which("a2x");
-skip-rest "'gzig' is not available" unless which("gzip");
+skip-rest "'a2x' is not available" and exit unless which("a2x");
+skip-rest "'gzip' is not available" and exit unless which("gzip");
 
 my $root = tempdir;
 

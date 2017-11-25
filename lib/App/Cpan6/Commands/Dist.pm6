@@ -54,14 +54,7 @@ multi sub MAIN(
 		say "tar czf $output {@tar-flags} .";
 	}
 
-	run «
-		tar czf $output
-		--transform $transform
-		--exclude-vcs
-		--exclude-vcs-ignores
-		--exclude=.[^/]*
-		.
-	», :err;
+	run « tar czf $output {@tar-flags} .», :err;
 
 	say "Created {$output}";
 

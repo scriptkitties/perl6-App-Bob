@@ -46,7 +46,7 @@ multi sub MAIN(
 	my @tar-flags;
 
 	given $tar-version {
-		when "1.27.1" { @tar-flags = « --transform $transform --exclude=.[^/]* » }
+		when "1.27.1" { @tar-flags = « --transform $transform --exclude-vcs --exclude=.[^/]* » }
 		default { @tar-flags = « --transform $transform --exclude-vcs --exclude-vcs-ignores --exclude=.[^/]* » }
 	}
 
@@ -66,7 +66,7 @@ multi sub MAIN(
 	say "Created {$output}";
 
 	if ($verbose) {
-		my $list = run « tar --list -f $output », :out;
+		my $list = run « tar tf $output », :out;
 
 		for $list.out.lines -> $line {
 			say "  {$line}";

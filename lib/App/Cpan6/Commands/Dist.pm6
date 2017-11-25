@@ -3,12 +3,19 @@
 use v6;
 
 use App::Cpan6;
+use App::Cpan6::Config;
 use App::Cpan6::Meta;
+use File::Which;
 
 unit module App::Cpan6::Commands::Dist;
 
-multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) is export
-{
+multi sub MAIN(
+	"dist",
+	Str:D $path,
+	Str :$output-dir,
+	Bool:D :$force = False,
+	Bool:D :$verbose = True,
+) is export {
 	chdir $path;
 
 	if (!"./META6.json".IO.e) {
@@ -16,12 +23,14 @@ multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) i
 		return;
 	}
 
+	die "'tar' is not available on this system" unless which("tar");
+
 	my %meta = get-meta;
 
 	my Str $fqdn = get-dist-fqdn(%meta);
 	my Str $basename = $*CWD.IO.basename;
 	my Str $transform = "s/^\./{$fqdn}/";
-	my Str $output = "{$*HOME}/.local/var/cpan6/dists/{$fqdn}.tar.gz";
+	my Str $output = "{$output-dir // get-config()<cpan6><distdir>}/$fqdn.tar.gz";
 
 	# Ensure output directory exists
 	mkdir $output.IO.parent;
@@ -31,34 +40,52 @@ multi sub MAIN("dist", Str $path, Bool :$force = False, Bool :$verbose = True) i
 		return;
 	}
 
-	run «
-		tar czf $output
-		--transform $transform
-		--exclude-vcs
-		--exclude-vcs-ignores
-		--exclude=.[^/]*
-		.
-	», :err;
+	# Set tar flags based on version
+	my $tar-version-cmd = run « tar --version », :out;
+	my $tar-version = $tar-version-cmd.out.lines[0].split(" ")[*-1];
+	my @tar-flags;
+
+	given $tar-version {
+		when "1.27.1" { @tar-flags = « --transform $transform --exclude-vcs --exclude=.[^/]* » }
+		default { @tar-flags = « --transform $transform --exclude-vcs --exclude-vcs-ignores --exclude=.[^/]* » }
+	}
+
+	if ($verbose) {
+		say "tar czf $output {@tar-flags} .";
+	}
+
+	run « tar czf $output {@tar-flags} .», :err;
 
 	say "Created {$output}";
 
 	if ($verbose) {
-		my $list = run « tar --list -f $output », :out;
+		my $list = run « tar tf $output », :out;
 
 		for $list.out.lines -> $line {
 			say "  {$line}";
 		}
 	}
+
+	True;
 }
 
-multi sub MAIN("dist", Bool :$force = False, :$verbose = True) is export
-{
-	MAIN("dist", ".", :$force, :$verbose);
+multi sub MAIN(
+	"dist",
+	Str :$output-dir,
+	Bool:D :$force = False,
+	Bool:D :$verbose = True
+) is export {
+	MAIN("dist", ".", :$output-dir, :$force, :$verbose);
 }
 
-multi sub MAIN("dist", @paths, Bool :$force = False, :$verbose = True) is export
-{
+multi sub MAIN(
+	"dist",
+	@paths,
+	Str :$output-dir,
+	Bool:D :$force = False,
+	Bool:D :$verbose = True,
+) is export {
 	for @paths -> $path {
-		MAIN("dist", $path, :$force, :$verbose);
+		MAIN("dist", $path, :$output-dir, :$force, :$verbose);
 	}
 }

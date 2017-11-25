@@ -4,18 +4,17 @@ env:
   global:
     - PATH=/opt/rakudo-pkg/bin:$PATH
   matrix:
-    - VERSION=2017.11 REVISION=01
-    - VERSION=2017.10 REVISION=01
+    - TAG=v2017.11    VERSION=2017.11-01
+    - TAG=v2017.10-02 VERSION=2017.10-02
 
 os:
   - linux
-  - osx
 
 git:
   depth: 3
 
 install:
-  - wget "https://github.com/nxadm/rakudo-pkg/releases/download/v${VERSION}/rakudo-pkg-Ubuntu14.04_${VERSION}-${REVISION}_amd64.deb" && sudo dpkg -i *.deb
+  - wget "https://github.com/nxadm/rakudo-pkg/releases/download/${TAG}/rakudo-pkg-Ubuntu14.04_${VERSION}_amd64.deb" && sudo dpkg -i *.deb
   - zef install --deps-only .
 
 script: AUTHOR_TESTING=1 prove -v -e "perl6 -Ilib" t/

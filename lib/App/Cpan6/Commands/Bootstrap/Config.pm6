@@ -8,39 +8,60 @@ use App::Cpan6::Meta;
 
 unit module App::Cpan6::Commands::Bootstrap::Config;
 
-my %options = %(
-	"cpan6.distdir" => "str",
-	"new-module.author" => "str",
-	"new-module.email" => "str",
-	"new-module.perl" => "str",
-	"new-module.license" => "str",
-	"new-module.dir-prefix" => "str",
-	"external.git" => "bool",
-	"external.travis" => "bool",
-	"style.indent" => "str",
-	"style.spaces" => "int",
-	"pause.id" => "str",
-);
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	Str:D $option,
+	Str:D $value,
+	:$config-file,
+	Bool:D :$force = False,
+) is export {
+	my $config = get-config(:$config-file);
 
-multi sub MAIN("bootstrap", "config", Str:D $option) is export
-{
-	die "Invalid config option $option" unless %options{$option}:exists;
+	die "Invalid config option $option" unless $config{$option}:exists;
 
-	my $config = get-config;
+	given $config{$option} {
+		when Bool { $config.set($option, $value.starts-with('y')) }
+		when Int  { $config.set($option, +$value)                 }
+		when Str  { $config.set($option, ~$value)                 }
+	}
 
-	given %options{$option} {
-		when "bool" { $config.set($option, confirm($option, $config.get($option, False))) }
-		when "str"  { $config.set($option, ask($option, $config.get($option, "")))        }
-		when "int"  { $config.set($option, +ask($option, $config.get($option, 0)))        }
+	if (!$force) {
+		say "$option = {$config{$option}}";
+		exit unless confirm("Save?");
+	}
+
+	put-config(:$config, path => $config-file // "");
+
+	say "Configuration updated";
+}
+
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	Str:D $option,
+	:@config-file,
+) is export {
+	my $config = get-config(:@config-file);
+
+	die "Invalid config option $option" unless $config{$option}:exists;
+
+	given $config{$option} {
+		when Bool { $config.set($option, confirm($option, $config.get($option, False))) }
+		when Int  { $config.set($option, +ask($option, $config.get($option, 0)))        }
+		when Str  { $config.set($option, ask($option, $config.get($option, "")))        }
 	}
 
 	put-config(:$config);
 }
 
-multi sub MAIN("bootstrap", "config") is export
-{
-	for %options.options.sort -> $option {
-		MAIN("bootstrap", "config", $option);
+multi sub MAIN(
+	"bootstrap",
+	"config",
+	:@config-file,
+) is export {
+	for get-config.keys -> $option {
+		MAIN("bootstrap", "config", $option, :@config-file);
 	}
 }
 

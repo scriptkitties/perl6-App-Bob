@@ -19,6 +19,8 @@ multi sub MAIN(
 	for @pages -> $page {
 		MAIN("bootstrap", "man", $page, dir => $dir.IO.absolute, :$verbose);
 	}
+
+	True;
 }
 
 multi sub MAIN(
@@ -32,7 +34,8 @@ multi sub MAIN(
 	my $destination = "$dir/man" ~ $page.split(".")[*-1] ~ "/$page.gz";
 
 	die "Invalid source $page" unless $source;
-	die "a2x is not installed" unless which("a2x");
+	die "'a2x' is not available on this system" unless which("a2x");
+	die "'gzip' is not available on this system" unless which("gzip");
 
 	chdir $source.IO.parent.path;
 
@@ -43,6 +46,8 @@ multi sub MAIN(
 	if (!move "$page.gz", $destination) {
 		note "Moving $page.gz to $destination failed";
 	}
+
+	True;
 }
 
 # vim: ft=perl6 noet

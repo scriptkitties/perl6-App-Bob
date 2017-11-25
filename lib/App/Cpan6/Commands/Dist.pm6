@@ -40,6 +40,10 @@ multi sub MAIN(
 		return;
 	}
 
+	if ($verbose) {
+		say "tar czf $output --transform $transform --exclude-vcs --exclude-vcs-ignores --exclude=.[^/]* .";
+	}
+
 	run «
 		tar czf $output
 		--transform $transform

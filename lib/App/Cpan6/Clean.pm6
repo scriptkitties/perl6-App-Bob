@@ -74,13 +74,20 @@ sub clean-meta (
 	put-meta(:%meta, :$path);
 }
 
-sub find-files (
+multi sub find-files (
 	Str:D $path
+	--> List
+) is export {
+	find-files($path.IO)
+}
+
+multi sub find-files (
+	IO::Path:D $path
 	--> List
 ) is export {
 	my @files;
 
-	for $path.IO.dir -> $object {
+	for $path.dir -> $object {
 		if ($object.IO.d) {
 			@files.append: find-files($object);
 

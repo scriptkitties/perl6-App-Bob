@@ -18,7 +18,8 @@ sub clean-files (
 	# Clean up bin and lib directories
 	for < bin lib > -> $directory {
 		for find-files($directory) -> $file {
-			next if %meta<provides> ∋ $file;
+			next if ~$file ~~ /\.precomp/;
+			next if %meta<provides>.values ∋ ~$file;
 
 			say "Removing $file" if $verbose;
 			unlink($file) if $force || confirm("Really delete $file?");

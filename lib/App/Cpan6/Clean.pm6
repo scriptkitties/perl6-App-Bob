@@ -57,7 +57,7 @@ sub clean-meta (
 
 	# Clean up resources
 	for %meta<resources>.values -> $value {
-		if ($value.IO.e) {
+		if ("resources/$value".IO.e) {
 			@resources.push: $value;
 
 			next

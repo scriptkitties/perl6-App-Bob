@@ -5,6 +5,7 @@ use v6.c;
 use App::Cpan6::Commands::Bootstrap::Config;
 use App::Cpan6::Commands::Bootstrap::Man;
 use App::Cpan6::Commands::Bump;
+use App::Cpan6::Commands::Clean;
 use App::Cpan6::Commands::Depend;
 use App::Cpan6::Commands::Dist;
 use App::Cpan6::Commands::Help;

@@ -31,6 +31,12 @@ Bumps the module's patch, minor or major version. If no bump type is supplied,
 it will be prompted. If a `.git` repository is found, a commit and a tag will
 be created as well.
 
+=== [ --no-files ] [ --no-meta ] clean < path >
+Clean up files not referenced in the `META6.json`, and remove entries from
+`META6.json` which have no corresponding file. The `--no-files` flag will not
+remove files without a corresponding entry in the `META6.json`, while the
+`--no-meta` won't touch your `META6.json`.
+
 === [ --no-install ] depend < modules ... >
 Add a dependency to one or more modules. Will attempt to install the module
 locally as well, unless `--no-install` is supplied.

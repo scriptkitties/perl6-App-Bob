@@ -2,18 +2,18 @@
 
 use v6.c;
 
-use App::Cpan6::Meta;
-use App::Cpan6::Input;
+use Dist::Helper::Meta;
 
-unit module App::Cpan6::Clean;
+unit module Dist::Helper::Clean;
 
 sub clean-files (
 	Str:D :$path,
 	Bool:D :$force = False,
 	Bool:D :$verbose = False,
-	--> Bool
+	--> Array
 ) is export {
 	my %meta = get-meta;
+	my @orphans = ();
 
 	# Clean up bin and lib directories
 	for < bin lib > -> $directory {
@@ -21,8 +21,7 @@ sub clean-files (
 			next if ~$file ~~ /\.precomp/;
 			next if %meta<provides>.values ∋ ~$file;
 
-			say "Removing $file" if $verbose;
-			unlink($file) if $force || confirm("Really delete $file?");
+			@orphans.push: $file;
 		}
 	}
 
@@ -30,16 +29,17 @@ sub clean-files (
 	for find-files("resources") -> $file {
 		next if %meta<resources> ∋ $file.subst("resources/", "");
 
-		say "Removing $file" if $verbose;
-		unlink($file) if $force || confirm("Really delete $file?");
+		@orphans.push: $file;
 	}
+
+	@orphans;
 }
 
 sub clean-meta (
 	Str:D :$path = ".",
 	Bool:D :$force = False,
 	Bool:D :$verbose = False,
-	--> Bool
+	--> Hash
 ) is export {
 	my %meta = get-meta($path);
 	my %provides;
@@ -67,12 +67,10 @@ sub clean-meta (
 		say "Removing resources.$value" if $verbose;
 	}
 
-	return False unless $force || confirm("Save cleaned META6.json?");
-
 	%meta<provides> = %provides;
 	%meta<resources> = @resources;
 
-	put-meta(:%meta, :$path);
+	%meta;
 }
 
 multi sub find-files (

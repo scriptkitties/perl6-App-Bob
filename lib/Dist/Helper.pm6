@@ -4,7 +4,7 @@ use v6.c;
 
 use JSON::Fast;
 
-unit module App::Cpan6;
+unit module Dist::Helper;
 
 sub get-dist-fqdn(%meta --> Str) is export
 {

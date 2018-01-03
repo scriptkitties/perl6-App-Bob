@@ -1,10 +1,10 @@
 #! /usr/bin/env false
 
-use v6;
+use v6.c;
 
 use JSON::Fast;
 
-unit module App::Cpan6::Meta;
+unit module Dist::Helper::Meta;
 
 sub get-meta($path = ".") is export
 {

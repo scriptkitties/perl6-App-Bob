@@ -4,7 +4,7 @@ use v6.c;
 
 use Template::Mustache;
 
-unit module App::Cpan6::Template;
+unit module Dist::Helper::Template;
 
 multi sub template (
 	Str:D $template,

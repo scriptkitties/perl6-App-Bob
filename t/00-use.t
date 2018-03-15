@@ -7,6 +7,8 @@ use JSON::Fast;
 
 my %provides = from-json(slurp "META6.json")<provides>;
 
+plan %provides.elems;
+
 for %provides.keys -> $module {
 	use-ok $module;
 }

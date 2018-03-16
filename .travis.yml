@@ -4,6 +4,8 @@ env:
   global:
     - PATH=/opt/rakudo-pkg/bin:$PATH
   matrix:
+    - TAG=v2018.02.1  VERSION=2018.02.1-01
+    - TAG=v2017.12    VERSION=2017.12-01
     - TAG=v2017.11    VERSION=2017.11-01
     - TAG=v2017.10-02 VERSION=2017.10-02
 

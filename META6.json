@@ -10,6 +10,7 @@
     "File::Which:ver<1.0.0+>",
     "JSON::Fast:ver<0.9.11+>",
     "MIME::Base64:ver<1.2.1+>",
+    "PostCocoon::Url",
     "SemVer:ver<0.1.3+>",
     "Template::Mustache:ver<1.0.1+>"
   ],
@@ -22,6 +23,10 @@
     "Dist::Helper::Clean": "lib/Dist/Helper/Clean.pm6",
     "Dist::Helper::Meta": "lib/Dist/Helper/Meta.pm6",
     "Dist::Helper::Path": "lib/Dist/Helper/Path.pm6",
+    "Dist::Helper::QA": "lib/Dist/Helper/QA.pm6",
+    "Dist::Helper::QA::Check": "lib/Dist/Helper/QA/Check.pm6",
+    "Dist::Helper::QA::Checks::Meta": "lib/Dist/Helper/QA/Checks/Meta.pm6",
+    "Dist::Helper::QA::Result": "lib/Dist/Helper/QA/Result.pm6",
     "Dist::Helper::Template": "lib/Dist/Helper/Template.pm6"
   },
   "resources": [
@@ -41,5 +46,8 @@
     "devel",
     "ecosystems"
   ],
+  "test-depends": [
+    "Hash::Merge"
+ ],
   "version": "0.19.2"
 }
